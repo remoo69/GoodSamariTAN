@@ -1,0 +1,177 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donation Modal</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom styles for the scrollbar */
+    .scrollbar-visible::-webkit-scrollbar {
+      width: 8px;
+    }
+    .scrollbar-visible::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+    }
+    .scrollbar-visible::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Container for the table and button -->
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 container">
+    
+    <!-- Donation Modal -->
+    <div id="donationModal" class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
+      <div class="bg-white p-6 rounded-lg relative w-full max-w-md sm:max-w-sm py-5 max-h-screen overflow-y-auto scrollbar-visible">
+
+        <!-- Close Button -->
+        <button onclick="document.getElementById('donationModal').classList.add('hidden')" 
+          class="absolute top-4 right-4 p-2 text-gray-500 hover:text-gray-700 text-xl sm:text-lg font-bold">
+          &times;
+        </button>
+        
+        <!-- Donation Form -->
+        <form id="donationForm" method="POST" enctype="multipart/form-data" class="space-y-4">
+          {% csrf_token %}
+          
+          <!-- Name & Contact -->
+          <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-sm font-medium">
+                Name <span class="text-red-500">*</span>
+              </label>
+              <input type="text" name="name" id="name" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+                     pattern="[A-Za-z .]+" title="Only letters and spaces are allowed" required>
+            </div>            
+            <div>
+              <label for="phone" class="block text-sm font-medium">Phone <span class="text-red-500">*</span> </label>
+              <input type="tel" name="phone" id="phone" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+                     pattern="\d+" 
+                     title="Phone number must contain only numbers" required>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium">Email <span class="text-red-500">*</span></label>
+            <input type="email" name="email" id="email" 
+                   class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+          </div>
+
+          <!-- Item Details -->
+          <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="item" class="block text-sm font-medium">Item <span class="text-red-500">*</span></label>
+              <input type="text" name="item" id="item" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            </div>
+            <div>
+              <label for="quantity" class="block text-sm font-medium">Quantity <span class="text-red-500">*</span> </label>
+              <input type="number" name="quantity" id="quantity" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            </div>
+          </div>
+
+          <!-- Dimensions -->
+          <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label for="height" class="block text-sm font-medium">Height (IN)</label>
+              <input type="number" name="height" id="height" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+              <label for="width" class="block text-sm font-medium">Width (IN)</label>
+              <input type="number" name="width" id="width" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+              <label for="weight" class="block text-sm font-medium">Weight (KG)</label>
+              <input type="number" name="weight" id="weight" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+          </div>
+
+          <!-- Category & Description -->
+          <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="category" class="block text-sm font-medium">Category</label>
+              <input type="text" name="category" id="category" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+              <label for="description" class="block text-sm font-medium">Description</label>
+              <textarea name="description" id="description" rows="2" 
+                        class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+          </div>
+
+          <!-- Image & Notes -->
+          <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="image" class="block text-sm font-medium">Upload Image</label>
+              <input type="file" name="image" id="image" 
+                     class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <div>
+              <label for="notes" class="block text-sm font-medium">Notes</label>
+              <textarea name="notes" id="notes" rows="2" 
+                        class="w-full bg-gray-200 border border-gray-400 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center mt-4">
+            <button type="submit" 
+                    class="bg-blue-500 text-white px-4 py-2 w-full sm:w-auto rounded shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Button to trigger the modal -->
+    <button type="button" 
+        onclick="document.getElementById('donationModal').classList.remove('hidden')" 
+        class="bg-green-500 text-white p-2 rounded cursor-pointer mt-6">
+      Donate
+    </button>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const form = document.getElementById('donationForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();  // Prevent default form submission
+
+      const formData = new FormData(form);
+
+      fetch('{% url "donation_form" %}', {  // Replace with the correct URL name
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Donation successfully submitted!');
+          document.getElementById('donationModal').classList.add('hidden');
+        } else {
+          alert('There was an error submitting the form.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An unexpected error occurred.');
+      });
+    });
+  </script>
+</body>
+</html>
