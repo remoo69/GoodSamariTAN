@@ -1,0 +1,17 @@
+{
+  "name": "goodsamaritan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
+  },
+  "scripts": {
+    "build": "tailwindcss build static/css/styles.css -o static/css/output.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
