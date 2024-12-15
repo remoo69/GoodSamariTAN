@@ -11,7 +11,7 @@
     "build": "react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "build": "tailwindcss -o static/css/style.css --watch"
+    "build:css": "tailwindcss -o static/css/style.css --watch"
   },
   "keywords": [],
   "author": "",

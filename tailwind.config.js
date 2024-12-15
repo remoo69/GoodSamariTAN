@@ -6,6 +6,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#004E64',
+        secondary: '#00A5CF',
+        accent: '#9FFFCB',
+        tertiary: '#25A18E',
+        quaternary: '#7AE582',
+      },
       animation: {
         marquee: "marquee 30s linear infinite",
         marqueeFade: "marqueeFade 30s linear infinite",

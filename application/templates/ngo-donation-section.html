@@ -2,35 +2,33 @@
 {% load static %}
 
 {% block content %}
-<div class="w-full flex flex-col items-end">
-  <nav class="w-full" role="navigation" aria-label="Main navigation">
-    <div class="flex flex-wrap gap-6 justify-between items-center px-4 py-4 w-full bg-gray-200 transition-all duration-300 hover:shadow-md sm:px-6 md:px-20">
-      <!-- Logo -->
-      <div class="flex items-center w-[24px]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 28 28" class="animate-pulse">
-          <path fill="#6D758F" fill-rule="evenodd" d="M23.552 7.727a3.865 3.865 0 1 0-3.865-3.864 3.864 3.864 0 0 0 3.865 3.864Zm0 10.136A3.865 3.865 0 1 0 19.687 14a3.864 3.864 0 0 0 3.865 3.863Zm0 10.137a3.865 3.865 0 1 0-3.865-3.864A3.864 3.864 0 0 0 23.552 28Zm-9.843-10.137A3.864 3.864 0 1 0 9.844 14a3.864 3.864 0 0 0 3.865 3.863Zm0 10.137a3.864 3.864 0 1 0-3.865-3.864A3.864 3.864 0 0 0 13.709 28Zm-9.843 0A3.864 3.864 0 1 0 0 24.136 3.864 3.864 0 0 0 3.866 28Z" clip-rule="evenodd" />
-        </svg>
+<div class="flex flex-col items-end w-full">
+  <nav class="fixed top-0 z-50 w-full border-b-4 border-[#7AE582]" role="navigation" aria-label="Main navigation">
+      <div class="flex flex-wrap gap-6 justify-between items-center px-4 py-4 w-full bg-[#25A18E] transition-all duration-300 hover:shadow-md sm:px-6 md:px-20">
+          <!-- Logo -->
+          <a href="#">
+              <div class="flex items-center w-[40px]">
+                  <img src="{% static 'media/gs-logo-white.png' %}" alt="Logo"/>
+                  <span class="hidden ml-2 text-xl font-bold text-white lg:block">GoodSamaritan</span>
+              </div> 
+          </a>
+  
+          <!-- Navigation Links -->
+          <div class="hidden gap-4 text-lg font-semibold text-white sm:flex">
+              <a href="#" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">Home</a>
+              <a href="#about" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">About Us</a>
+              <a href="#ngos" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">NGOs</a>
+              <a href="#contact" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">Contact Us</a>
+          </div>
+  
+          <!-- Buttons -->
+          <button class="flex items-center gap-1 px-4 py-2 font-bold bg-white rounded-md text-[#004E64] hover:bg-[#004E64] hover:text-white hover:shadow-lg">
+              Donate Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+              </svg>
+          </button>
       </div>
-
-      <!-- Navigation Links -->
-      <div class="hidden sm:flex gap-4 text-sm text-slate-500">
-        <a href="#home" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">Home</a>
-        <a href="#smiles" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">Smiles</a>
-        <a href="#ngos" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">NGOs</a>
-        <a href="#contact" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">Contact</a>
-      </div>
-
-      <!-- Buttons -->
-      <div class="flex gap-3">
-        <button class="px-4 py-2 rounded-md bg-slate-50 border border-slate-200 text-slate-500 hover:bg-slate-100">Login</button>
-        <button class="px-4 py-2 flex items-center gap-1 rounded-md bg-slate-500 text-white hover:bg-slate-600">
-          Donate Now
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
-            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
-          </svg>
-        </button>
-      </div>
-    </div>
   </nav>
 
   <section class="relative w-full h-screen overflow-hidden">
@@ -39,152 +37,161 @@
       <source src="{% static 'media/home_vid.mp4' %}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+
+    <!-- Dark Overlay -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-1]"></div>
   
     <!-- Content -->
-    <div class="flex flex-col justify-center items-start h-full text-left pl-12 sm:pl-16 lg:pl-20 relative z-10">
-      <h1 class="text-5xl font-extrabold text-white mb-4 animate__animated animate__fadeIn">
+    <div class="relative z-10 flex flex-col items-start justify-center h-full pl-12 text-left sm:pl-16 lg:pl-20">
+      <h1 class="mb-4 text-3xl font-extrabold text-white md:text-5xl lg:text-6xl animate__animated animate__fadeIn">
         Transforming Lives, 
       </h1>
-      <h1 class="text-5xl font-extrabold text-white mb-4 animate__animated animate__fadeIn">
+      <h1 class="mb-4 text-3xl font-extrabold text-white lg:text-6xl animate__animated animate__fadeIn md:text-5xl">
         One Donation at a Time
       </h1>
-      <p class="text-lg text-white mb-6">
-        GoodSamaritan: Empowering communities and transforming lives by connecting generous hearts with meaningful causes.
+      <p class="mb-6 text-white lg:text-xl text-md">
+        Your donation can help uplift lives and build a brighter future for those in need.
       </p>
       <div class="flex gap-4">
-        <button class="flex gap-1 justify-center items-center px-5 py-2 text-white rounded-md shadow-sm bg-slate-500 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500 transition-all duration-300">
-          Get started
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
-            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
-          </svg>
+        <button class="flex items-center gap-1 px-4 py-2 text-sm font-bold bg-[#004E64] text-white rounded-md hover:bg-white hover:text-[#004E64] hover:shadow-lg sm:px-6 sm:py-3 sm:text-base">
+            Donate Now
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+            </svg>
         </button>
-        <button class="px-6 py-3 text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 rounded-md shadow transition-all duration-300">
-          Apply NGO
+        <button class="px-4 py-2 text-sm font-bold transition-all duration-300 border-2 lg:border-4 border-white text-white rounded-md shadow hover:bg-white hover:text-[#004E64] sm:px-6 sm:py-3 sm:text-base">
+            Apply NGO
         </button>
       </div>
     </div>
   </section>
   
 
-  <!-- Logo Carousel -->
-  <section class="w-full bg-white py-8">
-    <div class="relative overflow-hidden">
-      <div class="flex animate-marqueeFade gap-8 sm:gap-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <img src="{% static 'media/pcnc.png' %}" alt="PCNC Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/kids.png' %}" alt="Kids Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/angels.png' %}" alt="Angels Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/sun.png' %}" alt="Sun Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/abs.png' %}" alt="ABS Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/aboitiz.png' %}" alt="Aboitiz Logo" class="h-10 w-auto" />
+  <section class="w-full py-8 bg-white">
+      <div class="relative overflow-hidden">
+          <div class="flex gap-8 px-4 mx-auto animate-marquee sm:gap-12 max-w-7xl sm:px-6 lg:px-8">
+              <img src="{% static 'media/pcnc.png' %}" alt="PCNC Logo" class="w-auto h-16" />
+              <img src="{% static 'media/kids.png' %}" alt="Kids Logo" class="w-auto h-16" />
+              <img src="{% static 'media/angels.png' %}" alt="Angels Logo" class="w-auto h-16" />
+              <img src="{% static 'media/sun.png' %}" alt="Sun Logo" class="w-auto h-16" />
+              <img src="{% static 'media/abs.png' %}" alt="ABS Logo" class="w-auto h-16" />
+              <img src="{% static 'media/aboitiz.png' %}" alt="Aboitiz Logo" class="w-auto h-16" />
+              <!-- Duplicate the logos for seamless looping -->
+              <img src="{% static 'media/pcnc.png' %}" alt="PCNC Logo" class="w-auto h-16" />
+              <img src="{% static 'media/kids.png' %}" alt="Kids Logo" class="w-auto h-16" />
+              <img src="{% static 'media/angels.png' %}" alt="Angels Logo" class="w-auto h-16" />
+              <img src="{% static 'media/sun.png' %}" alt="Sun Logo" class="w-auto h-16" />
+              <img src="{% static 'media/abs.png' %}" alt="ABS Logo" class="w-auto h-16" />
+              <img src="{% static 'media/aboitiz.png' %}" alt="Aboitiz Logo" class="w-auto h-16" />
+          </div>
       </div>
-    </div>
   </section>
-
   
-  <section class="w-full py-12 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">What you can do</h2>
-      <p class="text-xl text-slate-600 mb-8">"Make a difference by supporting causes you care about, uplifting lives, and building a brighter future together."</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/placeholder-image.jpg'%}" alt="Help" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Help</h3>
-          <p class="text-sm text-slate-500">Provide support to individuals, organizations, or communities in need</p>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/connect.jpg'%}" alt="Connect" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Connect</h3>
-          <p class="text-sm text-slate-500">Engage with causes, campaigns, or other donors through the platform.</p>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/track.jpg'%}" alt="Track" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Track</h3>
-          <p class="text-sm text-slate-500">Monitor the progress of campaigns they’ve donated to</p>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/support.jpg'%}" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Support</h3>
-          <p class="text-sm text-slate-500">Offer financial or moral backing to causes they care about</p>
-        </div>
+  <section class="w-full pt-40 pb-20 bg-gray-50" id="about">
+      <div class="px-4 mx-auto text-center max-w-7xl sm:px-6 lg:px-8">
+          <h2 class="mb-4 text-4xl font-extrabold text-slate-800 animate__animated animate__fadeIn">About Us</h2>
+          <p class="mb-8 text-xl text-slate-600"> <strong>GoodSamaritan</strong> is a donation platform designed to connect generous donors with organizations in need of support. 
+            Through this system, donors can easily find verified causes and contribute to various projects, ensuring their 
+            contributions make a meaningful impact. </p>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div class="p-4 bg-white rounded-lg shadow">
+                  <img src="{% static 'media/placeholder-image.jpg'%}" alt="Help" class="object-cover w-full h-40 mb-4 rounded-lg" />
+                  <h3 class="text-lg font-semibold text-slate-700">Help</h3>
+                  <p class="text-sm text-slate-500">Provide support to individuals, organizations, or communities in need</p>
+              </div>
+              <div class="p-4 bg-white rounded-lg shadow">
+                  <img src="{% static 'media/connect.jpg'%}" alt="Connect" class="object-cover w-full h-40 mb-4 rounded-lg" />
+                  <h3 class="text-lg font-semibold text-slate-700">Connect</h3>
+                  <p class="text-sm text-slate-500">Engage with causes, campaigns, or other donors through the platform.</p>
+              </div>
+              <div class="p-4 bg-white rounded-lg shadow">
+                  <img src="{% static 'media/support.jpg'%}" alt="Support" class="object-cover w-full h-40 mb-4 rounded-lg" />
+                  <h3 class="text-lg font-semibold text-slate-700">Support</h3>
+                  <p class="text-sm text-slate-500">Offer financial or moral backing to causes they care about</p>
+              </div>
+          </div>
       </div>
-    </div>
   </section>
 
-  {% comment %} <section class="w-full bg-slate-50 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  {% comment %} <section class="w-full py-20 bg-slate-50">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="text-center">
-        <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">Support an NGO Today</h2>
-        <p class="max-w-2xl mx-auto text-xl text-slate-600 mb-8">Your contribution can make a real difference in people's lives.</p>
+        <h2 class="mb-4 text-4xl font-extrabold text-slate-800 animate__animated animate__fadeIn">Support an NGO Today</h2>
+        <p class="max-w-2xl mx-auto mb-8 text-xl text-slate-600">Your contribution can make a real difference in people's lives.</p>
 
-        <form class="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-          <input type="search" placeholder="Search NGOs" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Search NGOs" />
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Location">
-            <option>Location</option>
-          </select>
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Category">
-            <option>Category</option>
-          </select>
+        <form class="flex flex-col gap-4 md:flex-row md:items-center">
+            <input type="search" placeholder="Search NGOs" class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:flex-1" aria-label="Search NGOs" />
+            <div class="flex flex-col gap-4 md:flex-row md:gap-2 md:w-auto">
+                <select class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Location">
+                    <option>Location</option>
+                </select>
+                <select class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Category">
+                    <option>Category</option>
+                </select>
+            </div>
         </form>
       </div>
     </div>
   </section> {% endcomment %}
 
-  <section class="w-full bg-slate-50 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="w-full pt-20 pb-40 bg-slate-50" id="ngos">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <!-- Header -->
       <div class="text-center">
-        <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">Support an NGO Today</h2>
-        <p class="max-w-2xl mx-auto text-xl text-slate-600 mb-8">Your contribution can make a real difference in people's lives.</p>
+        <h2 class="mb-4 text-4xl font-extrabold text-slate-800 animate__animated animate__fadeIn">Support an NGO Today</h2>
+        <p class="max-w-2xl mx-auto mb-8 text-xl text-slate-600">Your contribution can make a real difference in people's lives.</p>
 
         <!-- Filters -->
-        <form class="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <input type="search" placeholder="Search NGOs" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Search NGOs" />
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Location">
-            <option>Location</option>
-          </select>
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Category">
-            <option>Category</option>
-          </select>
+        <form class="flex flex-col gap-4 mx-auto mb-8 max-w-7xl md:flex-row md:items-center md:justify-between">
+            <input type="search" placeholder="Search NGOs" class="px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500" aria-label="Search NGOs" />
+            <div class="flex gap-4 md:gap-2 md:w-auto">
+                <select class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Location">
+                    <option>Location</option>
+                </select>
+                <select class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Category">
+                    <option>Category</option>
+                </select>
+            </div>
         </form>
       </div>
 
       <!-- NGO Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Card -->
-        <div class="bg-white shadow rounded-lg overflow-hidden">
+        <div class="overflow-hidden bg-white rounded-lg shadow">
           <!-- Image Section -->
-          <div class="h-40 bg-gray-100 flex items-center justify-center">
+          <div class="flex items-center justify-center h-40 bg-gray-100">
             <img src="{% static 'media/gawadkalinga.jpg'%}" alt="Gawad Kalinga" class="object-cover w-full h-full">
           </div>
           <!-- Content Section -->
           <div class="p-4">
             <h3 class="text-lg font-bold text-slate-800">Gawad Kalinga</h3>
             <p class="text-sm text-slate-600">Aims to end poverty for millions of Filipinos through community development, housing programs, and livelihood opportunities.</p>
-            <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
+            <button class="w-full px-4 py-2 mt-4 hover:text-white transition rounded-md border-2 border-[#25A18E] font-bold hover:bg-[#25A18E] text-[#25A18E]">Donate Now</button>
           </div>
         </div>
-        <div class="bg-white shadow rounded-lg overflow-hidden">
+        <div class="overflow-hidden bg-white rounded-lg shadow">
           <!-- Image Section -->
-          <div class="h-40 bg-gray-100 flex items-center justify-center">
+          <div class="flex items-center justify-center h-40 bg-gray-100">
             <img src="{% static 'media/angat.jpg'%}" alt="Angat Buhay" class="object-cover w-full h-full">
           </div>
           <!-- Content Section -->
           <div class="p-4">
             <h3 class="text-lg font-bold text-slate-800">Angat Buhay</h3>
             <p class="text-sm text-slate-600">Dedicated to uplifting underprivileged communities, this organization focuses on various social development programs aimed at empowering marginalized sectors</p>
-            <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
+            <button class="w-full px-4 py-2 mt-4 hover:text-white transition rounded-md border-2 border-[#25A18E] font-bold hover:bg-[#25A18E] text-[#25A18E]">Donate Now</button>
           </div>
         </div>
-        <div class="bg-white shadow rounded-lg overflow-hidden">
+        <div class="overflow-hidden bg-white rounded-lg shadow">
           <!-- Image Section -->
-          <div class="h-40 bg-gray-100 flex items-center justify-center">
+          <div class="flex items-center justify-center h-40 bg-gray-100">
             <img src="{% static 'media/haribon.jpg'%}" alt="Haribon Foundation" class="object-cover w-full h-full">
           </div>
           <!-- Content Section -->
           <div class="p-4">
             <h3 class="text-lg font-bold text-slate-800">Haribon Foundation</h3>
             <p class="text-sm text-slate-600">Dedicated to nature conservation, Haribon focuses on biodiversity conservation through community empowerment and scientific excellence</p>
-            <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
+            <button class="w-full px-4 py-2 mt-4 hover:text-white transition rounded-md border-2 border-[#25A18E] font-bold hover:bg-[#25A18E] text-[#25A18E]">Donate Now</button>
           </div>
         </div>
         
@@ -195,13 +202,13 @@
       </div>
 
       <!-- Pagination -->
-      <div class="flex justify-between items-center mt-8">
-        <button class="flex items-center gap-2 px-4 py-2 text-slate-500 bg-white border border-slate-300 rounded-md shadow hover:bg-slate-100 transition">
+      <div class="flex items-center justify-between mt-8">
+        <button class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
           </svg>Previous
         </button>
-        <button class="flex items-center gap-2 px-4 py-2 text-slate-500 bg-white border border-slate-300 rounded-md shadow hover:bg-slate-100 transition">
+        <button class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
           Next<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
@@ -211,26 +218,26 @@
   </section>
 
   <!-- Footer -->
- <footer class="w-full bg-slate-700 text-white py-8">
-      <div class="max-w-7xl mx-auto text-center">
-        <h2 class="text-lg font-bold mb-2">Get the latest news and updates</h2>
-        <p class="text-sm text-gray-300 mb-6">Subscribe to our newsletters to follow the news about our fresh products.</p>
-        <form class="flex justify-center items-center mb-6">
-          <input type="email" placeholder="Enter your email address" class="px-4 py-2 rounded-l-md border border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500" />
-          <button class="px-6 py-2 bg-slate-500 text-white rounded-r-md hover:bg-slate-600 transition-all duration-300">Subscribe</button>
+ <footer class="w-full py-10 pt-12 text-white bg-[#004E64]" id="contact">
+      <div class="mx-auto text-center max-w-7xl">
+        <h2 class="mb-2 text-xl font-bold lg:text-2xl">Get the latest news and updates</h2>
+        <p class="mb-6 text-gray-300">Subscribe to our newsletters to follow the news about our fresh products.</p>
+        <form class="flex items-center justify-center my-10">
+          <input type="email" placeholder="Enter your email address" class="px-4 py-2 text-black border rounded-l-md border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500" />
+          <button class="px-6 py-2 text-white transition-all duration-300 bg-[#25A18E] rounded-r-md hover:bg-[#7AE582] font-medium hover:text-[#004E64]">Subscribe</button>
         </form>
-        <div class="flex justify-center space-x-4 mb-4">
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-youtube"></i></a>
+        <div class="flex justify-center mb-4 space-x-4">
+          <a href="#" class="text-gray-300 transition-colors hover:text-white"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-gray-300 transition-colors hover:text-white"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-gray-300 transition-colors hover:text-white"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-gray-300 transition-colors hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="text-gray-300 transition-colors hover:text-white"><i class="fab fa-youtube"></i></a>
         </div>
-        <hr class="border-slate-600 my-4" />
+        <hr class="my-4 border-slate-600" />
         <p class="text-sm text-gray-400">
           Copyright © 2025 BRX Agency | All Rights Reserved |
-          <a href="#" class="hover:underline text-gray-300">Terms and Conditions</a> |
-          <a href="#" class="hover:underline text-gray-300">Privacy Policy</a>
+          <a href="#" class="text-gray-300 hover:underline">Terms and Conditions</a> |
+          <a href="#" class="text-gray-300 hover:underline">Privacy Policy</a>
         </p>
       </div>
     </footer>
