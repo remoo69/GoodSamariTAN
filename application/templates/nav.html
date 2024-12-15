@@ -11,18 +11,18 @@
 
         <!-- Navigation Links -->
         <div class="hidden gap-4 text-lg font-semibold text-white sm:flex">
-            <a href="{% url 'home' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">Home</a>
-            <a href="{% url 'about' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">About Us</a>
-            <a href="{% url 'ngo_list' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">NGOs</a>
-            <a href="{% url 'contact' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">Contact Us</a>
+            <a href="{% url 'home' %}" class="{% if request.path == '/' %}underline underline-offset-4{% else %}hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4{% endif %}">Home</a>
+            <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}underline underline-offset-4{% else %}hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4{% endif %}">About Us</a>
+            <a href="{% url 'ngo_list' %}" class="{% if request.path == '/ngos/' %}underline underline-offset-4{% else %}hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4{% endif %}">NGOs</a>
+            <a href="{% url 'contact' %}" class="{% if request.path == '/contact/' %}underline underline-offset-4{% else %}hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4{% endif %}">Contact Us</a>
         </div>
 
         <!-- Buttons -->
-        <button class="flex items-center gap-1 px-4 py-2 font-bold bg-white rounded-md text-[#004E64] hover:bg-[#004E64] hover:text-white hover:shadow-lg">
+        <a href="{% url 'ngo_list' %}" class="flex items-center gap-1 px-4 py-2 font-bold bg-white rounded-md text-[#004E64] hover:bg-[#004E64] hover:text-white hover:shadow-lg">
             Donate Now
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
             </svg>
-        </button>
+        </a>
     </div>
 </nav>
