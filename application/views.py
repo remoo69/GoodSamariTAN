@@ -50,3 +50,10 @@ def donation_view(request):
 
     # Render the donation form page (for GET requests)
     return render(request, 'donation_form.html')
+
+def landingPage(request):
+    return render(request, 'landingPage.html', {})
+
+
+def landing_page(request):
+    return render(request, 'ngo-donation-section.html')

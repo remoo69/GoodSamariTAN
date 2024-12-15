@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('donation_form/', views.donation_view, name='donation_form'),
+    path('', views.landing_page, name='landing_page'),
 ]
 
 # Serve media files during development
