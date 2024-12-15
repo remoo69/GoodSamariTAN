@@ -11,8 +11,8 @@
                 <div class="text-center md:text-center w-full mb-3 "> 
                     <h1 class="text-3xl md:text-4xl font-bold text-center  text-slate-800">{{ngo.name}} </h1>
                 </div>
-                <div class="bg-gray-100">
-                    <img src="{{ngo.cover_image.url}}" alt="{{ngo.name}}" class="w-[900px] h-[500px] object-cover"> 
+                <div class="border bg-gray-100 border-solid border-gray-200 shadow-sm">
+                    <img src="{{ngo.cover_image.url}}" alt="{{ngo.name}}" class="w-[900px] h-[500px] object-cover "> 
                 </div>
                 <form action="{% url 'donation_form' %}" method="get">
                     {% csrf_token %}
@@ -101,13 +101,13 @@
 
         
         {% comment %} <section class="w-full py-12 bg-white"> {% endcomment %}
-            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 pt-5">
 
                 <h1 class="text-3xl md:text-4xl font-bold text-center text-slate-800">Other Similar NGOs</h1>
                 
                 <div class="flex flex-row grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
                     {%for ng_samp in sample%}
-                    <div class=" flex flex-col shadow p-4 overflow-hidden w-80 ">
+                    <div class="border flex flex-col shadow-sm p-4 overflow-hidden w-80 border-solid ">
                         <div class="bg-gray-100  mb-5">
                             <img src="{{ng_samp.cover_image.url}}" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
                         </div>
