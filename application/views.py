@@ -1,9 +1,10 @@
-import random
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
-from .models import DonationForm  # Import your DonationForm model
-from .models import Ngo, NgoDonationMethod, NgoImage, NgoNeeded
+from django.core.paginator import Paginator
+from .models import DonationForm, NGO, Message, Subscriber # Import your DonationForm model
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 def donation_view(request):
     if request.method == 'POST':
@@ -53,9 +54,8 @@ def donation_view(request):
     # Render the donation form page (for GET requests)
     return render(request, 'donation_form.html')
 
-def landingPage(request):
-    return render(request, 'landingPage.html', {})
-
+def home(request):
+    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -88,12 +88,28 @@ def ngo_list(request):
 
 def ngo_detail(request, pk):
     ngo = get_object_or_404(NGO, pk=pk)
-    sample=list(NGO.objects.all())
-    if len(sample)<3:
-        sample=sample
-    else:
-        sample=random.sample(sample, 3)
-    return render(request, 'ngo_detail.html', {'ngo': ngo, "sample":sample})
+    return render(request, 'ngo_detail.html', {'ngo': ngo})
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        Message.objects.create(name=name, email=email, message=message)
+        return redirect('contact')  # Redirect to the same page or another page after submission
+
+    return render(request, 'contact.html')
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            if Subscriber.objects.filter(email=email).exists():
+                messages.error(request, 'This email is already subscribed.')
+            else:
+                Subscriber.objects.create(email=email)
+                messages.success(request, 'You have successfully subscribed.')
+        return redirect('contact')  # Redirect to the contact page or another page after submission
+
     return render(request, 'contact.html')

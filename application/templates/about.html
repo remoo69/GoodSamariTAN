@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="flex flex-col min-h-screen">
+    <section class="flex-grow w-full pt-40" id="about">
+        <div class="px-4 mx-auto md:text-center max-w-7xl sm:px-6 lg:px-8">
+            <h2 class="mb-4 text-4xl font-extrabold text-center text-slate-800 animate__animated animate__fadeIn">About Us</h2>
+            <p class="mb-8 text-lg md:text-xl text-slate-600">
+                <strong>GoodSamaritan</strong> is a donation platform designed to connect generous donors with organizations in need of support. 
+                Through this system, donors can easily find verified causes and contribute to various projects, ensuring their 
+                contributions make a meaningful impact.
+            </p>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <img src="{% static 'media/placeholder-image.jpg'%}" alt="Help" class="object-cover w-full h-40 mb-4 rounded-lg" />
+                    <h3 class="text-lg font-semibold text-slate-700">Help</h3>
+                    <p class="text-sm text-slate-500">Provide support to individuals, organizations, or communities in need</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <img src="{% static 'media/connect.jpg'%}" alt="Connect" class="object-cover w-full h-40 mb-4 rounded-lg" />
+                    <h3 class="text-lg font-semibold text-slate-700">Connect</h3>
+                    <p class="text-sm text-slate-500">Engage with causes, campaigns, or other donors through the platform.</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <img src="{% static 'media/support.jpg'%}" alt="Support" class="object-cover w-full h-40 mb-4 rounded-lg" />
+                    <h3 class="text-lg font-semibold text-slate-700">Support</h3>
+                    <p class="text-sm text-slate-500">Offer financial or moral backing to causes they care about</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w-full py-4 bg-white">
+        <div class="relative overflow-hidden">
+            <div class="flex gap-8 px-4 mx-auto animate-marquee sm:gap-12 max-w-7xl sm:px-6 lg:px-8">
+                <img src="{% static 'media/pcnc.png' %}" alt="PCNC Logo" class="w-auto h-16" />
+                <img src="{% static 'media/kids.png' %}" alt="Kids Logo" class="w-auto h-16" />
+                <img src="{% static 'media/angels.png' %}" alt="Angels Logo" class="w-auto h-16" />
+                <img src="{% static 'media/sun.png' %}" alt="Sun Logo" class="w-auto h-16" />
+                <img src="{% static 'media/abs.png' %}" alt="ABS Logo" class="w-auto h-16" />
+                <img src="{% static 'media/aboitiz.png' %}" alt="Aboitiz Logo" class="w-auto h-16" />
+                <!-- Duplicate the logos for seamless looping -->
+                <img src="{% static 'media/pcnc.png' %}" alt="PCNC Logo" class="w-auto h-16" />
+                <img src="{% static 'media/kids.png' %}" alt="Kids Logo" class="w-auto h-16" />
+                <img src="{% static 'media/angels.png' %}" alt="Angels Logo" class="w-auto h-16" />
+                <img src="{% static 'media/sun.png' %}" alt="Sun Logo" class="w-auto h-16" />
+                <img src="{% static 'media/abs.png' %}" alt="ABS Logo" class="w-auto h-16" />
+                <img src="{% static 'media/aboitiz.png' %}" alt="Aboitiz Logo" class="w-auto h-16" />
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

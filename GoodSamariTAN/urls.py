@@ -8,11 +8,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('donation_form/', views.donation_view, name='donation_form'),
-    path('about/', views.about_page, name='about'),
-    path('ngo/<slug:ngo_slug>/', views.about_page, name='ngo_detail'),
-    path('', views.landing_page, name='landing_page'),
-    
-]
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('ngos/', views.ngo_list, name='ngo_list'),
+    path('ngos/<int:pk>/', views.ngo_detail, name='ngo_detail'),
+    path('contact/', views.contact, name='contact'),
+    path('subscribe/', views.subscribe, name='subscribe'),
+] 
 
 # Serve media files during development
 if settings.DEBUG:

@@ -1,0 +1,40 @@
+<!-- filepath: /d:/codes/GoodSamariTAN/application/templates/home.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="relative w-full h-screen overflow-hidden">
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
+        <source src="{% static 'media/home_vid.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-1]"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex flex-col items-start justify-center h-full pl-12 text-left sm:pl-16 lg:pl-20">
+        <h1 class="mb-4 text-3xl font-extrabold text-white md:text-5xl lg:text-6xl animate__animated animate__fadeIn">
+            Transforming Lives, 
+        </h1>
+        <h1 class="mb-4 text-3xl font-extrabold text-white lg:text-6xl animate__animated animate__fadeIn md:text-5xl">
+            One Donation at a Time
+        </h1>
+        <p class="mb-6 text-white lg:text-xl text-md">
+            Your donation can help uplift lives and build a brighter future for those in need.
+        </p>
+        <div class="flex gap-4">
+            <a href="{% url 'ngo_list' %}" class="flex items-center gap-1 px-4 py-2 text-sm font-bold bg-[#004E64] text-white rounded-md hover:bg-white hover:text-[#004E64] hover:shadow-lg sm:px-6 sm:py-3 sm:text-base">
+                Donate Now
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+                </svg>
+            </a>
+            <button class="px-4 py-2 text-sm font-bold transition-all duration-300 border-2 lg:border-4 border-white text-white rounded-md shadow hover:bg-white hover:text-[#004E64] sm:px-6 sm:py-3 sm:text-base">
+                Apply as NGO
+            </button>
+        </div>
+    </div>
+</section>
+{% endblock %}
