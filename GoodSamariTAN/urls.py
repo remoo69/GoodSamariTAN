@@ -23,7 +23,7 @@ urlpatterns = [
     path('ngos/', views.ngos_view, name='ngos_view'),  # Optional: Keep this if needed
     path('search_ngos/', views.search_ngos, name='search_ngos'), 
     
-     path('', views.landing_page_view, name='home'),   
+    path('', views.landing_page_view, name='home'),   
 ]
 
 # Serve media files during development

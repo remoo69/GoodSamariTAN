@@ -54,7 +54,13 @@ def donation_view(request):
             return JsonResponse({'success': False, 'message': str(e)})
 
     # Render the donation form page (for GET requests)
-    return render(request, 'donation_form.html')
+    
+    #ayusin mo romeo @romeo
+    return render(request, 'ngo-donation-section.html')
+
+def donation_form(request):
+    if request.method == 'GET':
+        return render(request, 'donation_form.html')
 
 # Home View
 def landingPage(request):
