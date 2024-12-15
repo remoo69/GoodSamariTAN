@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
@@ -88,7 +89,12 @@ def ngo_list(request):
 
 def ngo_detail(request, pk):
     ngo = get_object_or_404(NGO, pk=pk)
-    return render(request, 'ngo_detail.html', {'ngo': ngo})
+    sample=list(NGO.objects.all())
+    if len(sample)<3:
+        sample=sample
+    else:
+        sample=random.sample(sample,3)
+    return render(request, 'ngo_detail.html', {'ngo': ngo, "sample":sample})
 
 def contact(request):
     if request.method == 'POST':
