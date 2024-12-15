@@ -9,8 +9,17 @@
             </div> 
         </a>
 
+        <!-- Hamburger Menu for Small Screens -->
+        <div class="sm:hidden">
+            <button id="menu-btn" class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
         <!-- Navigation Links -->
-        <div class="hidden gap-4 text-lg font-semibold text-white sm:flex">
+        <div id="menu" class="hidden gap-4 text-lg font-semibold text-white sm:flex sm:items-center">
             <a href="{% url 'home' %}" class="{% if request.path == '/' %}underline underline-offset-4{% else %}hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4{% endif %}">Home</a>
             <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}underline underline-offset-4{% else %}hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4{% endif %}">About Us</a>
             <a href="{% url 'ngo_list' %}" class="{% if request.path == '/ngos/' %}underline underline-offset-4{% else %}hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4{% endif %}">NGOs</a>
@@ -18,11 +27,26 @@
         </div>
 
         <!-- Buttons -->
-        <a href="{% url 'ngo_list' %}" class="flex items-center gap-1 px-4 py-2 font-bold bg-white rounded-md text-[#004E64] hover:bg-[#004E64] hover:text-white hover:shadow-lg">
+        <a href="{% url 'ngo_list' %}" class="hidden sm:flex items-center gap-1 px-4 py-2 font-bold bg-white rounded-md text-[#004E64] hover:bg-[#004E64] hover:text-white hover:shadow-lg">
             Donate Now
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
             </svg>
         </a>
     </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden sm:hidden">
+        <a href="{% url 'home' %}" class="block px-4 py-2 text-white bg-[#25A18E] hover:bg-[#004E64]">Home</a>
+        <a href="{% url 'about' %}" class="block px-4 py-2 text-white bg-[#25A18E] hover:bg-[#004E64]">About Us</a>
+        <a href="{% url 'ngo_list' %}" class="block px-4 py-2 text-white bg-[#25A18E] hover:bg-[#004E64]">NGOs</a>
+        <a href="{% url 'contact' %}" class="block px-4 py-2 text-white bg-[#25A18E] hover:bg-[#004E64]">Contact Us</a>
+    </div>
 </nav>
+
+<script>
+    document.getElementById('menu-btn').addEventListener('click', function() {
+        var mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
