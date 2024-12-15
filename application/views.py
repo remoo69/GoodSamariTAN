@@ -48,7 +48,8 @@ def donation_view(request):
                 image=image,  # Pass the image directly
             )
             # Return success response
-            return JsonResponse({'success': True, 'message': 'Donation successfully submitted!', 'image_url': image_url})
+            # return JsonResponse({'success': True, 'message': 'Donation successfully submitted!', 'image_url': image_url}),
+            return render(request, 'ngo-donation-section.html', {'success': True, 'message': 'Donation successfully submitted!', 'image_url': image_url})
         except Exception as e:
             # Handle any errors during saving
             return JsonResponse({'success': False, 'message': str(e)})
@@ -56,11 +57,11 @@ def donation_view(request):
     # Render the donation form page (for GET requests)
     
     #ayusin mo romeo @romeo
-    return render(request, 'ngo-donation-section.html')
+    return render(request, 'donation_form.html')
 
-def donation_form(request):
-    if request.method == 'GET':
-        return render(request, 'donation_form.html')
+# def donation_form(request):
+#     if request.method == 'GET':
+#         return render(request, 'donation_form.html')
 
 # Home View
 def landingPage(request):
