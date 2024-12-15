@@ -2,214 +2,157 @@
 {% load static %}
 
 {% block content %}
-<div class="w-full flex flex-col items-end">
-  <nav class="w-full" role="navigation" aria-label="Main navigation">
-    <div class="flex flex-wrap gap-6 justify-between items-center px-4 py-4 w-full bg-gray-200 transition-all duration-300 hover:shadow-md sm:px-6 md:px-20">
-      <!-- Logo -->
-      <div class="flex items-center w-[24px]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 28 28" class="animate-pulse">
-          <path fill="#6D758F" fill-rule="evenodd" d="M23.552 7.727a3.865 3.865 0 1 0-3.865-3.864 3.864 3.864 0 0 0 3.865 3.864Zm0 10.136A3.865 3.865 0 1 0 19.687 14a3.864 3.864 0 0 0 3.865 3.863Zm0 10.137a3.865 3.865 0 1 0-3.865-3.864A3.864 3.864 0 0 0 23.552 28Zm-9.843-10.137A3.864 3.864 0 1 0 9.844 14a3.864 3.864 0 0 0 3.865 3.863Zm0 10.137a3.864 3.864 0 1 0-3.865-3.864A3.864 3.864 0 0 0 13.709 28Zm-9.843 0A3.864 3.864 0 1 0 0 24.136 3.864 3.864 0 0 0 3.866 28Z" clip-rule="evenodd" />
-        </svg>
-      </div>
-
-      <!-- Navigation Links -->
-      <div class="hidden sm:flex gap-4 text-sm text-slate-500">
-        <a href="#home" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">Home</a>
-        <a href="#smiles" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">Smiles</a>
-        <a href="#ngos" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">NGOs</a>
-        <a href="#contact" class="hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500">Contact</a>
-      </div>
-
-      <!-- Buttons -->
-      <div class="flex gap-3">
-        <button class="px-4 py-2 rounded-md bg-slate-50 border border-slate-200 text-slate-500 hover:bg-slate-100">Login</button>
-        <button class="px-4 py-2 flex items-center gap-1 rounded-md bg-slate-500 text-white hover:bg-slate-600">
-          Donate Now
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
-            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="w-full bg-gray-50 py-8">
-    <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Text -->
-      <div class="text-center md:text-left w-full md:w-1/2">
-        <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Transforming Lives, One Donation at a Time</h1>
-        <p class="mt-4 text-base md:text-lg text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis sit aliquam sit nullam neque.</p>
-        <div class="mt-6 flex gap-4 justify-center md:justify-start">
-          <button class="px-5 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600">Get Started</button>
-          <button class="px-5 py-2 bg-white text-slate-500 border border-slate-300 rounded-md hover:bg-slate-100">Apply NGO</button>
+  <div class="w-full flex flex-col items-end">
+    {% include 'nav.html' %}
+    <!-- Hero Section -->
+    <section class="w-full bg-gray-50 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Text -->
+        <div class="text-center md:text-left w-full md:w-1/2">
+          <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Transforming Lives, One Donation at a Time</h1>
+          <p class="mt-4 text-base md:text-lg text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis sit aliquam sit nullam neque.</p>
+          <div class="mt-6 flex gap-4 justify-center md:justify-start">
+            <button class="px-5 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600">Get Started</button>
+            {% if user.is_authenticated %}
+              <div></div>
+            {% else %}
+              <button class="px-5 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600" onclick="window.location.href='{% url 'ngo_application' %}'">Apply NGO</button>
+            {% endif %}
+          </div>
         </div>
-      </div>
 
-      <!-- Video or Placeholder -->
-      <div class="mt-6 md:mt-0 w-full md:w-1/2 flex justify-center">
-        <a href="{% static 'media/Rick_roll.mp4' %}" target="_blank" class="p-4 bg-white rounded-full shadow-lg hover:shadow-xl">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-slate-500" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M10.804 8L6.226 11.347V4.653L10.804 8z" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Logo Carousel -->
-  <section class="w-full bg-white py-8">
-    <div class="relative overflow-hidden">
-      <div class="flex animate-marqueeFade gap-8 sm:gap-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <img src="{% static 'media/pcnc.png' %}" alt="PCNC Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/kids.png' %}" alt="Kids Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/angels.png' %}" alt="Angels Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/sun.png' %}" alt="Sun Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/abs.png' %}" alt="ABS Logo" class="h-10 w-auto" />
-        <img src="{% static 'media/aboitiz.png' %}" alt="Aboitiz Logo" class="h-10 w-auto" />
-      </div>
-    </div>
-  </section>
-
-  
-  <section class="w-full py-12 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">What you can do</h2>
-      <p class="text-xl text-slate-600 mb-8">Lorem ipsum dolor sit amet consectetur adipiscing elit. Mollis sit aliquam sit nullam neque.</p>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
-          <p class="text-sm text-slate-500">Description of what users can do.</p>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
-          <p class="text-sm text-slate-500">Description of what users can do.</p>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
-          <p class="text-sm text-slate-500">Description of what users can do.</p>
-        </div>
-        <div class="bg-white rounded-lg shadow p-4">
-          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
-          <p class="text-sm text-slate-500">Description of what users can do.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {% comment %} <section class="w-full bg-slate-50 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">Support an NGO Today</h2>
-        <p class="max-w-2xl mx-auto text-xl text-slate-600 mb-8">Your contribution can make a real difference in people's lives.</p>
-
-        <form class="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-          <input type="search" placeholder="Search NGOs" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Search NGOs" />
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Location">
-            <option>Location</option>
-          </select>
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Category">
-            <option>Category</option>
-          </select>
-        </form>
-      </div>
-    </div>
-  </section> {% endcomment %}
-
-  <section class="w-full bg-slate-50 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="text-center">
-        <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">Support an NGO Today</h2>
-        <p class="max-w-2xl mx-auto text-xl text-slate-600 mb-8">Your contribution can make a real difference in people's lives.</p>
-
-        <!-- Filters -->
-        <form class="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <input type="search" placeholder="Search NGOs" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Search NGOs" />
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Location">
-            <option>Location</option>
-          </select>
-          <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Category">
-            <option>Category</option>
-          </select>
-        </form>
-      </div>
-
-      <!-- NGO Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Card -->
-        <div class="bg-white shadow rounded-lg overflow-hidden">
-          <div class="h-40 bg-gray-100 flex items-center justify-center">
-            <svg class="w-12 h-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21H4a2 2 0 01-2-2V8a2 2 0 012-2h1m0 0h10a2 2 0 012 2v3m-6 6h10l3 3m0 0l-3-3m3 3V9" />
+        <!-- Video or Placeholder -->
+        <div class="mt-6 md:mt-0 w-full md:w-1/2 flex justify-center">
+          <a href="{% static 'media/Rick_roll.mp4' %}" target="_blank" class="p-4 bg-white rounded-full shadow-lg hover:shadow-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-slate-500" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M10.804 8L6.226 11.347V4.653L10.804 8z" />
             </svg>
-          </div>
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-slate-800">NGO Name</h3>
-            <p class="text-sm text-slate-600">Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit tortor eu.</p>
-            <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
-          </div>
+          </a>
         </div>
+      </div>
+    </section>
 
-        <!-- Duplicate the card 5 more times for the grid -->
-        <div class="bg-white shadow rounded-lg overflow-hidden">
-          <div class="h-40 bg-gray-100 flex items-center justify-center">
-            <svg class="w-12 h-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21H4a2 2 0 01-2-2V8a2 2 0 012-2h1m0 0h10a2 2 0 012 2v3m-6 6h10l3 3m0 0l-3-3m3 3V9" />
+    <!-- Logo Carousel -->
+    <section class="w-full bg-white py-8">
+      <div class="relative overflow-hidden">
+        <div class="flex animate-marqueeFade gap-8 sm:gap-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <img src="{% static 'media/pcnc.png' %}" alt="PCNC Logo" class="h-10 w-auto" />
+          <img src="{% static 'media/kids.png' %}" alt="Kids Logo" class="h-10 w-auto" />
+          <img src="{% static 'media/angels.png' %}" alt="Angels Logo" class="h-10 w-auto" />
+          <img src="{% static 'media/sun.png' %}" alt="Sun Logo" class="h-10 w-auto" />
+          <img src="{% static 'media/abs.png' %}" alt="ABS Logo" class="h-10 w-auto" />
+          <img src="{% static 'media/aboitiz.png' %}" alt="Aboitiz Logo" class="h-10 w-auto" />
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full py-12 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">What you can do</h2>
+        <p class="text-xl text-slate-600 mb-8">Lorem ipsum dolor sit amet consectetur adipiscing elit. Mollis sit aliquam sit nullam neque.</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {% comment %} <div class="bg-white rounded-lg shadow p-4">
+            <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+            <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+            <p class="text-sm text-slate-500">Description of what users can do.</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-4">
+            <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+            <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+            <p class="text-sm text-slate-500">Description of what users can do.</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-4">
+            <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+            <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+            <p class="text-sm text-slate-500">Description of what users can do.</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-4">
+            <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+            <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+            <p class="text-sm text-slate-500">Description of what users can do.</p>
+          </div> {% endcomment %}
+        </div>
+      </div>
+    </section>
+
+    {% comment %} <section class="w-full bg-slate-50 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">Support an NGO Today</h2>
+          <p class="max-w-2xl mx-auto text-xl text-slate-600 mb-8">Your contribution can make a real difference in people's lives.</p>
+
+          <form class="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input type="search" placeholder="Search NGOs" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Search NGOs" />
+            <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Location">
+              <option>Location</option>
+            </select>
+            <select class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Category">
+              <option>Category</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </section> {% endcomment %}
+
+    <section class="w-full bg-slate-50 py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center">
+          <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">Support an NGO Today</h2>
+          <p class="max-w-2xl mx-auto text-xl text-slate-600 mb-8">Your contribution can make a real difference in people's lives.</p>
+    
+          <!-- Filters -->
+          <form id="ngos-search-form" class="max-w-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <input type="search" id="search-name" placeholder="Search NGOs" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Search NGOs" />
+            <select id="location-filter" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Location">
+              <option value="">Select Location</option>
+              {% for location in locations %}
+                <option value="{{ location }}">{{ location }}</option>
+              {% endfor %}
+            </select>
+            <select id="category-filter" class="w-full px-4 py-3 rounded-md border border-slate-300 focus:ring-2 focus:ring-slate-500 transition-all duration-300" aria-label="Select Category">
+              <option value="">Select Category</option>
+              <!-- Add categories dynamically if needed -->
+            </select>
+          </form>
+        </div>
+    
+        <!-- NGO Cards -->
+        <div id="ngo-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {% for ngo in ngos %}
+          <!-- Card -->
+          <div class="bg-white shadow rounded-lg overflow-hidden">
+            <div class="h-40 bg-gray-100 flex items-center justify-center">
+              <svg class="w-12 h-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21H4a2 2 0 01-2-2V8a2 2 0 012-2h1m0 0h10a2 2 0 012 2v3m-6 6h10l3 3m0 0l-3-3m3 3V9" />
+              </svg>
+            </div>
+            <div class="p-4">
+              <h3 class="text-lg font-bold text-slate-800">{{ ngo.name }}</h3>
+              <p class="text-sm text-slate-600">Address: {{ ngo.address }}</p>
+              <p class="text-sm text-slate-600">Email: {{ ngo.email }}</p>
+              <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    
+        <!-- Pagination -->
+        <div class="flex justify-between items-center mt-8">
+          <button class="flex items-center gap-2 px-4 py-2 text-slate-500 bg-white border border-slate-300 rounded-md shadow hover:bg-slate-100 transition">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>Previous
+          </button>
+          <button class="flex items-center gap-2 px-4 py-2 text-slate-500 bg-white border border-slate-300 rounded-md shadow hover:bg-slate-100 transition">
+            Next<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
-          </div>
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-slate-800">NGO Name</h3>
-            <p class="text-sm text-slate-600">Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit tortor eu.</p>
-            <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
-          </div>
+          </button>
         </div>
-        <!-- Add more cards here -->
       </div>
-
-      <!-- Pagination -->
-      <div class="flex justify-between items-center mt-8">
-        <button class="flex items-center gap-2 px-4 py-2 text-slate-500 bg-white border border-slate-300 rounded-md shadow hover:bg-slate-100 transition">
-          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>Previous
-        </button>
-        <button class="flex items-center gap-2 px-4 py-2 text-slate-500 bg-white border border-slate-300 rounded-md shadow hover:bg-slate-100 transition">
-          Next<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
- <footer class="w-full bg-slate-700 text-white py-8">
-      <div class="max-w-7xl mx-auto text-center">
-        <h2 class="text-lg font-bold mb-2">Get the latest news and updates</h2>
-        <p class="text-sm text-gray-300 mb-6">Subscribe to our newsletters to follow the news about our fresh products.</p>
-        <form class="flex justify-center items-center mb-6">
-          <input type="email" placeholder="Enter your email address" class="px-4 py-2 rounded-l-md border border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500" />
-          <button class="px-6 py-2 bg-slate-500 text-white rounded-r-md hover:bg-slate-600 transition-all duration-300">Subscribe</button>
-        </form>
-        <div class="flex justify-center space-x-4 mb-4">
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="text-gray-300 hover:text-white transition-colors"><i class="fab fa-youtube"></i></a>
-        </div>
-        <hr class="border-slate-600 my-4" />
-        <p class="text-sm text-gray-400">
-          Copyright © 2025 BRX Agency | All Rights Reserved |
-          <a href="#" class="hover:underline text-gray-300">Terms and Conditions</a> |
-          <a href="#" class="hover:underline text-gray-300">Privacy Policy</a>
-        </p>
-      </div>
-    </footer>
-</div>
+    </section>
+    <!-- Footer -->
+    {% include 'footer.html' %}
+  </div>
 {% endblock %}

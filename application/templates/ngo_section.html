@@ -1,0 +1,14 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for ngo in ngos %}
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+      <div class="p-4">
+        <h3 class="text-lg font-bold text-slate-800">{{ ngo.name }}</h3>
+        <p class="text-sm text-slate-600">Address: {{ ngo.address }}</p>
+        <p class="text-sm text-slate-600">Email: {{ ngo.email }}</p>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center col-span-full text-gray-500">No NGOs available at the moment.</p>
+    {% endfor %}
+  </div>
+  
