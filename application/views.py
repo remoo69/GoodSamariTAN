@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
-from .models import DonationForm  # Import your DonationForm model
+from django.core.paginator import Paginator
+from .models import DonationForm, NGO # Import your DonationForm model
+from django.shortcuts import get_object_or_404
 
 def donation_view(request):
     if request.method == 'POST':
@@ -51,9 +53,35 @@ def donation_view(request):
     # Render the donation form page (for GET requests)
     return render(request, 'donation_form.html')
 
-def landingPage(request):
-    return render(request, 'landingPage.html', {})
+def home(request):
+    return render(request, 'home.html')
 
+def about(request):
+    return render(request, 'about.html')
 
-def landing_page(request):
-    return render(request, 'ngo-donation-section.html')
+def ngo_list(request):
+    query = request.GET.get('q', '')
+    location = request.GET.get('location')
+    ngos = NGO.objects.all()
+
+    if query:
+        ngos = ngos.filter(name__icontains=query)
+    if location:
+        ngos = ngos.filter(city=location)
+
+    cities = NGO.objects.values_list('city', flat=True).distinct()
+
+    context = {
+        'ngos': ngos,
+        'cities': cities,
+        'query': query,
+        'location': location,
+    }
+    return render(request, 'ngo_list.html', context)
+
+def ngo_detail(request, pk):
+    ngo = get_object_or_404(NGO, pk=pk)
+    return render(request, 'ngo_detail.html', {'ngo': ngo})
+
+def contact(request):
+    return render(request, 'contact.html')

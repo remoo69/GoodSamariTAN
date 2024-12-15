@@ -1,0 +1,67 @@
+<!-- application/templates/ngo_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="w-full pt-40 bg-slate-50">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center">
+            <h2 class="mb-4 text-4xl font-extrabold text-slate-800 animate__animated animate__fadeIn">Support an NGO Today</h2>
+            <p class="max-w-2xl mx-auto mb-8 text-xl text-slate-600">Your contribution can make a real difference in people's lives.</p>
+
+            <!-- Filters -->
+            <form class="flex flex-col gap-4 mx-auto mb-8 max-w-7xl md:flex-row md:items-center md:justify-between" method="GET" action="">
+                <input type="search" name="q" placeholder="Search NGOs" value="{{ query }}" class="px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500" aria-label="Search NGOs" />
+                <div class="flex gap-4 md:gap-2 md:w-auto">
+                    <select name="location" class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Location">
+                        <option value="">Location</option>
+                        {% for city in cities %}
+                        <option value="{{ city }}" {% if city == location %}selected{% endif %}>{{ city }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Category">
+                        <option>Category</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <!-- NGO Cards -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {% for ngo in ngos %}
+            <div class="overflow-hidden bg-white rounded-lg shadow">
+                <!-- Image Section -->
+                <div class="flex items-center justify-center h-40 bg-gray-100">
+                    <img src="{{ ngo.cover_image.url }}" alt="{{ ngo.name }}" class="object-cover w-full h-full">
+                </div>
+                <!-- Content Section -->
+                <div class="p-4">
+                    <h3 class="text-lg font-bold text-slate-800">{{ ngo.name }}</h3>
+                    <p class="text-sm text-slate-600">{{ ngo.about|truncatewords:20 }}</p>
+                    <a href="{% url 'ngo_detail' ngo.id %}" class="w-full px-4 py-2 mt-4 hover:text-white transition rounded-md border-2 border-[#25A18E] font-bold hover:bg-[#25A18E] text-[#25A18E] text-center block">Donate Now</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-between mt-8">
+            {% if page_obj.has_previous %}
+            <button class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>Previous
+            </button>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <button class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
+                Next<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

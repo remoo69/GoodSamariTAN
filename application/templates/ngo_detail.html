@@ -1,0 +1,41 @@
+<!-- filepath: /d:/codes/GoodSamariTAN/application/templates/ngo_detail.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container py-8 mx-auto">
+    <div class="overflow-hidden bg-white rounded-lg shadow-md">
+        <img src="{{ ngo.cover_image.url }}" alt="{{ ngo.name }}" class="object-cover w-full h-64">
+        <div class="p-4">
+            <h1 class="mb-4 text-4xl font-bold">{{ ngo.name }}</h1>
+            <p class="mb-4 text-gray-600">{{ ngo.about }}</p>
+            <h2 class="mb-2 text-2xl font-bold">What They Need</h2>
+            <ul class="mb-4 list-disc list-inside">
+                {% for need in ngo.needs|split:',' %}
+                <li>{{ need }}</li>
+                {% endfor %}
+            </ul>
+            <h2 class="mb-2 text-2xl font-bold">Contact Information</h2>
+            <p class="mb-2"><strong>City:</strong> {{ ngo.city }}</p>
+            <p class="mb-2"><strong>Exact Address:</strong> {{ ngo.exact_address }}</p>
+            <p class="mb-2"><strong>Phone:</strong> {{ ngo.phone }}</p>
+            <p class="mb-2"><strong>Email:</strong> {{ ngo.email }}</p>
+            <h2 class="mb-2 text-2xl font-bold">Other Donation Methods</h2>
+            <p class="mb-4">{{ ngo.other_donation_methods }}</p>
+            <h2 class="mb-2 text-2xl font-bold">Gallery</h2>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {% for image in ngo.gallery.all %}
+                <img src="{{ image.image.url }}" alt="Gallery Image" class="object-cover w-full h-32 rounded-lg">
+                {% endfor %}
+            </div>
+            <h2 class="mb-2 text-2xl font-bold">Categories</h2>
+            <ul class="list-disc list-inside">
+                {% for category in ngo.categories.all %}
+                <li>{{ category.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -17,3 +17,31 @@ class DonationForm(models.Model):
 
     def __str__(self):
         return self.name
+
+class NGO(models.Model):
+    name = models.CharField(max_length=255)
+    cover_image = models.ImageField(upload_to='ngos/covers/')
+    about = models.TextField()
+    needs = models.TextField()  # Store as a comma-separated list
+    city = models.CharField(max_length=255)
+    exact_address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    other_donation_methods = models.TextField()
+    gallery = models.ManyToManyField('NGOGallery')
+    categories = models.ManyToManyField('NGOCategory')
+
+    def __str__(self):
+        return self.name
+
+class NGOGallery(models.Model):
+    image = models.ImageField(upload_to='ngos/gallery/')
+
+    def __str__(self):
+        return f"Gallery Image {self.id}"
+
+class NGOCategory(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name

@@ -1,0 +1,28 @@
+{% load static %}
+<nav class="fixed top-0 z-50 w-full border-b-4 border-[#7AE582]" role="navigation" aria-label="Main navigation">
+    <div class="flex flex-wrap gap-6 justify-between items-center px-4 py-4 w-full bg-[#25A18E] transition-all duration-300 hover:shadow-md sm:px-6 md:px-20">
+        <!-- Logo -->
+        <a href="{% url 'home' %}">
+            <div class="flex items-center w-[40px]">
+                <img src="{% static 'media/gs-logo-white.png' %}" alt="Logo"/>
+                <span class="hidden ml-2 text-xl font-bold text-white lg:block">GoodSamaritan</span>
+            </div> 
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden gap-4 text-lg font-semibold text-white sm:flex">
+            <a href="{% url 'home' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">Home</a>
+            <a href="{% url 'about' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">About Us</a>
+            <a href="{% url 'ngo_list' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">NGOs</a>
+            <a href="{% url 'contact' %}" class="hover:underline hover:underline-offset-4 focus:underline focus:underline-offset-4">Contact Us</a>
+        </div>
+
+        <!-- Buttons -->
+        <button class="flex items-center gap-1 px-4 py-2 font-bold bg-white rounded-md text-[#004E64] hover:bg-[#004E64] hover:text-white hover:shadow-lg">
+            Donate Now
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+            </svg>
+        </button>
+    </div>
+</nav>
