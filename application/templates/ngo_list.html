@@ -10,16 +10,16 @@
             <p class="max-w-2xl mx-auto mb-8 text-lg md:text-xl text-slate-600">Your contribution can make a real difference.</p>
 
             <!-- Filters -->
-            <form class="flex flex-col gap-4 mx-auto mb-8 max-w-7xl md:flex-row md:items-center md:justify-between" method="GET" action="">
-                <input type="search" name="q" placeholder="Search NGOs" value="{{ query }}" class="px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500" aria-label="Search NGOs" />
+            <form id="filter-form" class="flex flex-col gap-4 mx-auto mb-8 max-w-7xl md:flex-row md:items-center md:justify-between" method="GET" action="">
+                <input type="search" name="q" placeholder="Search NGOs" value="{{ query }}" class="px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500" aria-label="Search NGOs" id="search-input" />
                 <div class="flex gap-4 md:gap-2 md:w-auto">
-                    <select name="location" class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Location">
+                    <select name="location" class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Location" id="location-select">
                         <option value="">Location</option>
                         {% for city in cities %}
                         <option value="{{ city }}" {% if city == location %}selected{% endif %}>{{ city }}</option>
                         {% endfor %}
                     </select>
-                    <select name="category" class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Category">
+                    <select name="category" class="w-full px-4 py-3 transition-all duration-300 border rounded-md border-slate-300 focus:ring-2 focus:ring-slate-500 md:w-auto" aria-label="Select Category" id="category-select">
                         <option value="">Category</option>
                         {% for cat in categories %}
                         <option value="{{ cat }}" {% if cat == category %}selected{% endif %}>{{ cat }}</option>
@@ -66,4 +66,33 @@
         </div>
     </div>
 </section>
+
+<script>
+    const filterForm = document.getElementById('filter-form');
+    const searchInput = document.getElementById('search-input');
+    const locationSelect = document.getElementById('location-select');
+    const categorySelect = document.getElementById('category-select');
+
+    let debounceTimer;
+
+    // Debounce function to delay form submission
+    const debounce = (callback, delay) => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(callback, delay);
+    };
+
+    // Trigger form submission after typing
+    searchInput.addEventListener('input', () => {
+        debounce(() => {
+            filterForm.submit();
+        }, 500); // Adjust the delay as needed (500ms here)
+    });
+
+    // kapag ito nilagay, di ka makakapagtype ng marami, kada letter nag aauto refresh
+    // searchInput.addEventListener('input', () => filterForm.submit());
+
+    // Trigger form submission immediately on dropdown change
+    locationSelect.addEventListener('change', () => filterForm.submit());
+    categorySelect.addEventListener('change', () => filterForm.submit());
+</script>
 {% endblock %}
