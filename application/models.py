@@ -16,18 +16,6 @@ class DonationForm(models.Model):
     image = models.ImageField(upload_to='donations/', null=True, blank=True)
 
 
-
-class Ngo(models.Model):
-    name=models.CharField(max_length=100)
-    location=models.CharField(max_length=250)
-    phone = models.CharField(max_length=15)
-    email = models.EmailField()
-    about_us=models.TextField()
-    slug=models.SlugField()
-
-    def __str__(self):
-        return self.name
-
 class NGO(models.Model):
     name = models.CharField(max_length=255)
     cover_image = models.ImageField(upload_to='ngos/covers/')
