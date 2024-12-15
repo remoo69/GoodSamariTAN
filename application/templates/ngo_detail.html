@@ -6,17 +6,24 @@
 {% block content %}
 <div class="container py-8 mx-auto ">
     <div class=" bg-white rounded-lg shadow-md">
-        <section class="w-full bg-white py-8 h-full flex-grow">
-            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
-                <div class="text-center md:text-center w-full mb-3"> 
-                    <h1 class="text-3xl md:text-4xl font-bold text-center pt-10 text-slate-800">{{ngo.name}} </h1>
+        <section class="w-full bg-white py-8 h-full flex-grow pt-20">
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5 ">
+                <div class="text-center md:text-center w-full mb-3 "> 
+                    <h1 class="text-3xl md:text-4xl font-bold text-center  text-slate-800">{{ngo.name}} </h1>
                 </div>
-                <div class="bg-gray-100  mb-3">
+                <div class="bg-gray-100">
                     <img src="{{ngo.cover_image.url}}" alt="{{ngo.name}}" class="w-[900px] h-[500px] object-cover"> 
                 </div>
                 <form action="{% url 'donation_form' %}" method="get">
                     {% csrf_token %}
-                    <button type="submit" class="px-5 py-3 bg-slate-800 text-white rounded-md  hover:bg-slate-700 border-spacing-100">Donate Now ➔</button>
+                    {% comment %} <a href="{% url 'donation_form' %}" class="hidden sm:flex items-center gap-1 px-4 py-2 font-bold bg-[#25A18E] rounded-md text-white hover:bg-[#004E64] hover:hover:bg-[#2c7161] hover:shadow-lg"> {% endcomment %}
+                    <a href="{% url 'donation_form' %}" class="pt-5hidden sm:flex items-center gap-1 px-4 py-2 font-bold bg-[#004E64] rounded-md text-white hover:bg-[#256577] hover:hover:bg-[#256577] hover:shadow-lg">
+                        Donate Now
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+                        </svg>
+                    </a>
+                    {% comment %} <button type="submit" class="px-5 py-3 bg-[#25A18E] text-white rounded-md  hover:bg-[#7AE582] border-spacing-100 font-bold">Donate Now ➔</button> {% endcomment %}
                 </form>
             </div>
             
@@ -74,8 +81,17 @@
                     <div class="text-left mt-8">
                         <form action="{% url 'donation_form' %}" method="get">
                         {% csrf_token %}
-                        <button class="px-5 py-3 bg-slate-800 text-white rounded-md hover:bg-slate-700 border-spacing-100">Donate Now ➔</button>
-                        </form>
+                        {% comment %} <button class="px-5 py-3 bg-slate-800 text-white rounded-md hover:bg-slate-700 border-spacing-100">Donate Now ➔</button> {% endcomment %}
+                        
+                        {% comment %} <a href="{% url 'donation_form' %}" class="w-40 px-5 py-3 hidden sm:flex items-center gap-1 font-bold bg-[#25A18E] rounded-md text-white hover:bg-[#004E64] hover:hover:bg-[#2c7161] hover:shadow-lg"> {% endcomment %}
+                            <a href="{% url 'donation_form' %}" class="w-36 hidden sm:flex items-center gap-1 px-4 py-2 font-bold bg-[#004E64] rounded-md text-white hover:bg-[#256577] hover:hover:bg-[#256577] hover:shadow-lg">    
+                            Donate Now
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+                            </svg>
+                        </a>    
+                    
+                    </form>
                     </div>
                 </div>
             </div>
