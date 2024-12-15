@@ -33,38 +33,29 @@
     </div>
   </nav>
 
-  <section class="relative w-full h-screen overflow-hidden">
-    <!-- Video Background -->
-    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
-      <source src="{% static 'media/home_vid.mp4' %}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  
-    <!-- Content -->
-    <div class="flex flex-col justify-center items-start h-full text-left pl-12 sm:pl-16 lg:pl-20 relative z-10">
-      <h1 class="text-5xl font-extrabold text-white mb-4 animate__animated animate__fadeIn">
-        Transforming Lives, 
-      </h1>
-      <h1 class="text-5xl font-extrabold text-white mb-4 animate__animated animate__fadeIn">
-        One Donation at a Time
-      </h1>
-      <p class="text-lg text-white mb-6">
-        GoodSamaritan: Empowering communities and transforming lives by connecting generous hearts with meaningful causes.
-      </p>
-      <div class="flex gap-4">
-        <button class="flex gap-1 justify-center items-center px-5 py-2 text-white rounded-md shadow-sm bg-slate-500 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-slate-500 transition-all duration-300">
-          Get started
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
-            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+  <!-- Hero Section -->
+  <section class="w-full bg-gray-50 py-8">
+    <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Text -->
+      <div class="text-center md:text-left w-full md:w-1/2">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-800">Transforming Lives, One Donation at a Time</h1>
+        <p class="mt-4 text-base md:text-lg text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis sit aliquam sit nullam neque.</p>
+        <div class="mt-6 flex gap-4 justify-center md:justify-start">
+          <button class="px-5 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600">Get Started</button>
+          <button class="px-5 py-2 bg-white text-slate-500 border border-slate-300 rounded-md hover:bg-slate-100">Apply NGO</button>
+        </div>
+      </div>
+
+      <!-- Video or Placeholder -->
+      <div class="mt-6 md:mt-0 w-full md:w-1/2 flex justify-center">
+        <a href="{% static 'media/Rick_roll.mp4' %}" target="_blank" class="p-4 bg-white rounded-full shadow-lg hover:shadow-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 text-slate-500" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M10.804 8L6.226 11.347V4.653L10.804 8z" />
           </svg>
-        </button>
-        <button class="px-6 py-3 text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 rounded-md shadow transition-all duration-300">
-          Apply NGO
-        </button>
+        </a>
       </div>
     </div>
   </section>
-  
 
   <!-- Logo Carousel -->
   <section class="w-full bg-white py-8">
@@ -84,27 +75,27 @@
   <section class="w-full py-12 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-4xl font-extrabold text-slate-800 mb-4 animate__animated animate__fadeIn">What you can do</h2>
-      <p class="text-xl text-slate-600 mb-8">"Make a difference by supporting causes you care about, uplifting lives, and building a brighter future together."</p>
+      <p class="text-xl text-slate-600 mb-8">Lorem ipsum dolor sit amet consectetur adipiscing elit. Mollis sit aliquam sit nullam neque.</p>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/placeholder-image.jpg'%}" alt="Help" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Help</h3>
-          <p class="text-sm text-slate-500">Provide support to individuals, organizations, or communities in need</p>
+          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+          <p class="text-sm text-slate-500">Description of what users can do.</p>
         </div>
         <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/connect.jpg'%}" alt="Connect" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Connect</h3>
-          <p class="text-sm text-slate-500">Engage with causes, campaigns, or other donors through the platform.</p>
+          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+          <p class="text-sm text-slate-500">Description of what users can do.</p>
         </div>
         <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/track.jpg'%}" alt="Track" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Track</h3>
-          <p class="text-sm text-slate-500">Monitor the progress of campaigns they’ve donated to</p>
+          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+          <p class="text-sm text-slate-500">Description of what users can do.</p>
         </div>
         <div class="bg-white rounded-lg shadow p-4">
-          <img src="{% static 'media/support.jpg'%}" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
-          <h3 class="text-lg font-semibold text-slate-700">Support</h3>
-          <p class="text-sm text-slate-500">Offer financial or moral backing to causes they care about</p>
+          <img src="placeholder-image.jpg" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+          <h3 class="text-lg font-semibold text-slate-700">Action 1</h3>
+          <p class="text-sm text-slate-500">Description of what users can do.</p>
         </div>
       </div>
     </div>
@@ -152,45 +143,32 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Card -->
         <div class="bg-white shadow rounded-lg overflow-hidden">
-          <!-- Image Section -->
           <div class="h-40 bg-gray-100 flex items-center justify-center">
-            <img src="{% static 'media/gawadkalinga.jpg'%}" alt="Gawad Kalinga" class="object-cover w-full h-full">
+            <svg class="w-12 h-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21H4a2 2 0 01-2-2V8a2 2 0 012-2h1m0 0h10a2 2 0 012 2v3m-6 6h10l3 3m0 0l-3-3m3 3V9" />
+            </svg>
           </div>
-          <!-- Content Section -->
           <div class="p-4">
-            <h3 class="text-lg font-bold text-slate-800">Gawad Kalinga</h3>
-            <p class="text-sm text-slate-600">Aims to end poverty for millions of Filipinos through community development, housing programs, and livelihood opportunities.</p>
+            <h3 class="text-lg font-bold text-slate-800">NGO Name</h3>
+            <p class="text-sm text-slate-600">Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit tortor eu.</p>
             <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
           </div>
         </div>
-        <div class="bg-white shadow rounded-lg overflow-hidden">
-          <!-- Image Section -->
-          <div class="h-40 bg-gray-100 flex items-center justify-center">
-            <img src="{% static 'media/angat.jpg'%}" alt="Angat Buhay" class="object-cover w-full h-full">
-          </div>
-          <!-- Content Section -->
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-slate-800">Angat Buhay</h3>
-            <p class="text-sm text-slate-600">Dedicated to uplifting underprivileged communities, this organization focuses on various social development programs aimed at empowering marginalized sectors</p>
-            <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
-          </div>
-        </div>
-        <div class="bg-white shadow rounded-lg overflow-hidden">
-          <!-- Image Section -->
-          <div class="h-40 bg-gray-100 flex items-center justify-center">
-            <img src="{% static 'media/haribon.jpg'%}" alt="Haribon Foundation" class="object-cover w-full h-full">
-          </div>
-          <!-- Content Section -->
-          <div class="p-4">
-            <h3 class="text-lg font-bold text-slate-800">Haribon Foundation</h3>
-            <p class="text-sm text-slate-600">Dedicated to nature conservation, Haribon focuses on biodiversity conservation through community empowerment and scientific excellence</p>
-            <button class="mt-4 w-full py-2 px-4 text-white bg-slate-500 rounded-md hover:bg-slate-600 transition">Donate Now</button>
-          </div>
-        </div>
-        
-        <!-- Duplicate the card 5 more times for the grid -->
-        <!-- Image Section -->
 
+        <!-- Duplicate the card 5 more times for the grid -->
+        <div class="flex bg-white shadow rounded-lg overflow-hidden grid-cols-2">
+          <div class="h-40 bg-gray-100 flex items-center justify-center">
+            <svg class="w-12 h-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21H4a2 2 0 01-2-2V8a2 2 0 012-2h1m0 0h10a2 2 0 012 2v3m-6 6h10l3 3m0 0l-3-3m3 3V9" />
+            </svg>
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-slate-800">NGO Name</h3>
+            <p class="text-sm text-slate-600">Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit tortor eu.</p>
+          </div>
+
+        </div>
+       
         <!-- Add more cards here -->
       </div>
 
