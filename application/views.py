@@ -64,8 +64,10 @@ def ngo_list(request):
     query = request.GET.get('q', '')
     location = request.GET.get('location')
     category = request.GET.get('category')
-    ngos = NGO.objects.all()
-
+    
+    # Only show verified NGOs
+    ngos = NGO.objects.filter(verified=True)  # Add this filter
+    
     if query:
         ngos = ngos.filter(name__icontains=query)
     if location:
@@ -113,3 +115,38 @@ def subscribe(request):
         return redirect('contact')  # Redirect to the contact page or another page after submission
 
     return render(request, 'contact.html')
+
+def ngo_application(request):
+    return render(request, 'ngo-application.html')
+
+def ngo_application_submit(request):
+    if request.method == 'POST':
+        # Collect data from the form
+        name = request.POST.get('name')
+        cover_image = request.FILES.get('cover_image')
+        about = request.POST.get('about')
+        needs = request.POST.get('needs')  # Assume comma-separated input
+        city = request.POST.get('city')
+        exact_address = request.POST.get('exact_address')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        other_donation_methods = request.POST.get('other_donation_methods')
+
+        # Save to the NGO model
+        ngo = NGO.objects.create(
+            name=name,
+            cover_image=cover_image,
+            about=about,
+            needs=needs,
+            city=city,
+            exact_address=exact_address,
+            phone=phone,
+            email=email,
+            other_donation_methods=other_donation_methods,
+        )
+
+        # Redirect to the home page
+        return redirect('home')  # Replace 'home' with the correct URL name
+
+    # If the request is not POST, redirect to the application form
+    return redirect('ngo_application')

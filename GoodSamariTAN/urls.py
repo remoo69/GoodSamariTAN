@@ -14,6 +14,8 @@ urlpatterns = [
     path('ngos/<int:pk>/', views.ngo_detail, name='ngo_detail'),
     path('contact/', views.contact, name='contact'),
     path('subscribe/', views.subscribe, name='subscribe'),
+    path('apply-ngo/', views.ngo_application, name='ngo_application'),
+    path('apply-ngo/submit/', views.ngo_application_submit, name='ngo_application_submit'),
 ] 
 
 # Serve media files during development

@@ -30,6 +30,7 @@ class NGO(models.Model):
     other_donation_methods = models.TextField()
     gallery = models.ManyToManyField('NGOGallery')
     categories = models.ManyToManyField('NGOCategory')
+    verified = models.BooleanField(default=False)  # Add this field
 
     def __str__(self):
         return self.name

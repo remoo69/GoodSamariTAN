@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="relative w-full min-h-screen overflow-hidden">
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
+        <source src="{% static 'media/home_vid.mp4' %}" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-1]"></div>
+
+    <!-- Form Container -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-24 pb-12">
+        <div class="w-full max-w-3xl bg-white p-6 opacity-90 rounded-md shadow-lg">
+            <form method="post" action="{% url 'ngo_application_submit' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 gap-4">
+                    <h1 class="text-3xl font-bold text-slate-800 mb-6 text-center">NGO Application</h1>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Organization Name</label>
+                        <input type="text" name="name" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Cover Image</label>
+                        <input type="file" name="cover_image" class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">About</label>
+                        <textarea name="about" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Needs (comma-separated)</label>
+                        <input type="text" name="needs" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">City</label>
+                        <input type="text" name="city" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Exact Address</label>
+                        <input type="text" name="exact_address" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Phone</label>
+                        <input type="text" name="phone" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Email</label>
+                        <input type="email" name="email" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Other Donation Methods</label>
+                        <textarea name="other_donation_methods" class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md"></textarea>
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <button type="submit" class="w-full sm:w-auto px-5 py-2 bg-[#25A18E] text-gray-900 rounded-md hover:bg-[#1A7469]">
+                        Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
