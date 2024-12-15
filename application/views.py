@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
@@ -56,28 +57,43 @@ def landingPage(request):
     return render(request, 'landingPage.html', {})
 
 
-def landing_page(request):
-    return render(request, 'ngo-donation-section.html')
+def about(request):
+    return render(request, 'about.html')
 
+def ngo_list(request):
+    query = request.GET.get('q', '')
+    location = request.GET.get('location')
+    category = request.GET.get('category')
+    ngos = NGO.objects.all()
 
-def about_page(request,):
-    sample=Ngo(name="Aboitiz Foundation, Inc.",
-                location="Manila",
-                phone="1234454",
-                email="random@gmail.com",
-                about_us="Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices. Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices. Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices."
-                )
-    # NgoNeeded.objects.create(ngo=sample,
-    #                name="Ewan")
-    # NgoNeeded.objects.create(ngo=sample,
-    #                name="Ewan2")
-    # NgoNeeded.objects.create(ngo=sample,
-    #                name="Ewan3")
-    needed=["Ewan", "IDK"]
-    contact_methods=["Globe", "Smart"]
-    context={
-        "ngo":sample,
-        "needed_items":needed,
-        "contact_methods":contact_methods
+    if query:
+        ngos = ngos.filter(name__icontains=query)
+    if location:
+        ngos = ngos.filter(city=location)
+    if category:
+        ngos = ngos.filter(categories__name=category)
+
+    cities = NGO.objects.values_list('city', flat=True).distinct()
+    categories = NGO.objects.values_list('categories__name', flat=True).distinct()
+
+    context = {
+        'ngos': ngos,
+        'cities': cities,
+        'categories': categories,
+        'query': query,
+        'location': location,
+        'category': category,
     }
-    return render(request, "about_page.html", context=context)
+    return render(request, 'ngo_list.html', context)
+
+def ngo_detail(request, pk):
+    ngo = get_object_or_404(NGO, pk=pk)
+    sample=list(NGO.objects.all())
+    if len(sample)<3:
+        sample=sample
+    else:
+        sample=random.sample(sample, 3)
+    return render(request, 'ngo_detail.html', {'ngo': ngo, "sample":sample})
+
+def contact(request):
+    return render(request, 'contact.html')

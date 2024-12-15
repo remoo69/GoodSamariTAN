@@ -1,0 +1,113 @@
+<!-- filepath: /d:/codes/GoodSamariTAN/application/templates/ngo_detail.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container py-8 mx-auto ">
+    <div class=" bg-white rounded-lg shadow-md">
+        <section class="w-full bg-white py-8 h-full flex-grow">
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+                <div class="text-center md:text-center w-full mb-3"> 
+                    <h1 class="text-3xl md:text-4xl font-bold text-center pt-10 text-slate-800">{{ngo.name}} </h1>
+                </div>
+                <div class="bg-gray-100  mb-3">
+                    <img src="{{ngo.cover_image.url}}" alt="{{ngo.name}}" class="w-[900px] h-[500px] object-cover"> 
+                </div>
+                <form action="{% url 'donation_form' %}" method="get">
+                    {% csrf_token %}
+                    <button type="submit" class="px-5 py-3 bg-slate-800 text-white rounded-md  hover:bg-slate-700 border-spacing-100">Donate Now ➔</button>
+                </form>
+            </div>
+            
+            
+        
+        {% comment %} </section> {% endcomment %}
+
+        <section class=" w-full bg-white py-8 mt-5">
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " >
+            <div class="text-center md:flex-col w-full mb-8 space-y-5 "> 
+                <h1 class="text-3xl md:text-4xl font-bold text-left text-slate-800">About Us </h1>
+                <p class="mt-4 text-base md:text-lg text-slate-700 text-left">{{ngo.about}}</p>
+            </div>
+            </div>
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center md:flex-col w-full mb-8 space-y-5">
+                    <h1 class="text-3xl md:text-4xl font-bold text-left text-slate-800">What We Need</h1>
+                    <ul class="list-none">
+                    {% for item in ngo.needs|split:"," %} 
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#334155" class="bi bi-check-circle-fill" viewBox="0 0 16 16" style="margin-right: 5px;">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            <p class="text-base md:text-lg text-slate-800 text-left">{{ item }}</p>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center md:flex-col w-full mb-8 space-y-5"> 
+                    <h1 class="text-3xl md:text-4xl font-bold text-left text-slate-800">Contacts </h1>
+                    <p class="mt-4 text-base md:text-lg text-slate-700 text-left">Address: {{ngo.exact_address}}, {{ngo.city}}</p>
+                    <p class="mt-4 text-base md:text-lg text-slate-700 text-left">Phone: {{ngo.phone}}</p>
+                    <p class="mt-4 text-base md:text-lg text-slate-700 text-left">Email: {{ngo.email}}</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center md:flex-col w-full mb-8 space-y-5"> 
+                    <h1 class="text-3xl md:text-4xl font-bold text-left text-slate-800">Other Donation Methods </h1>
+                    <p class="text-base md:text-lg text-slate-700 text-left">{{ ngo.other_donation_methods }}</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center md:flex-col w-full mb-8 grid-rows-3 space-y-5"> 
+                    <h1 class="text-3xl md:text-4xl font-bold text-left text-slate-800">Gallery </h1>
+                    {% comment %} <p class="mt-4 text-base md:text-lg text-slate-600 text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mollis sit aliquam sit nullam neque.</p> {% endcomment %}
+                    <div class="grid grid-cols-3 gap-4">
+                        {% for image in ngo.gallery.all%}
+                        <div class="bg-gray-100  p-4">
+                        <img src="{{image}}" alt="Image 1" class="w-full h-24 object-cover rounded"> 
+                        </div>
+                        {%endfor%}
+                    </div>  
+                    <div class="text-left mt-8">
+                        <form action="{% url 'donation_form' %}" method="get">
+                        {% csrf_token %}
+                        <button class="px-5 py-3 bg-slate-800 text-white rounded-md hover:bg-slate-700 border-spacing-100">Donate Now ➔</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        
+        {% comment %} <section class="w-full py-12 bg-white"> {% endcomment %}
+            <div class="flex flex-col md:flex-col justify-center items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+
+                <h1 class="text-3xl md:text-4xl font-bold text-center text-slate-800">Other Similar NGOs</h1>
+                
+                <div class="flex flex-row grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
+                    {%for ng_samp in sample%}
+                    <div class=" flex flex-col shadow p-4 overflow-hidden w-80 ">
+                        <div class="bg-gray-100  mb-5">
+                            <img src="{{ng_samp.cover_image.url}}" alt="Action Image" class="w-full h-40 object-cover rounded-lg mb-4" />
+                        </div>
+                            <h3 class="text-xl font-bold text-slate-800 " >{{ng_samp.name}}</h3>
+                        <p class="text-sm text-slate-700">{{ng_samp.about}}</p>
+                        
+                        <a href="{% url 'ngo_detail' ng_samp.id %}" class="mt-5 pt-5 hover:underline delay-75 text-slate-700">Learn More➔</a>
+                    </div>
+                    {%endfor%}
+                    
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+    </div>
+</div>
+{% endblock %}
