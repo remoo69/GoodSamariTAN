@@ -30,10 +30,20 @@
     <div class="mx-auto text-center max-w-7xl">
       <h2 class="mb-2 text-xl font-bold lg:text-2xl">Get the latest news and updates</h2>
       <p class="mb-6 text-gray-300">Subscribe to our newsletters to follow the news about our fresh products.</p>
-      <form class="flex flex-col items-center justify-center gap-4 my-10 sm:flex-row">
-        <input type="email" placeholder="Enter your email address" class="w-full px-4 py-2 text-black border rounded-md border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500 sm:w-auto" />
-        <button class="w-full px-6 py-2 text-white transition-all duration-300 bg-[#25A18E] rounded-md hover:bg-[#7AE582] font-medium hover:text-[#004E64] sm:w-auto">Subscribe</button>
+      <form class="flex flex-col items-center justify-center gap-4 my-10 sm:flex-row" method="POST" action="{% url 'subscribe' %}">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Enter your email address" class="w-full px-4 py-2 text-black border rounded-md border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-500 sm:w-auto" required />
+        <button type="submit" class="w-full px-6 py-2 text-white transition-all duration-300 bg-[#25A18E] rounded-md hover:bg-[#7AE582] font-medium hover:text-[#004E64] sm:w-auto">Subscribe</button>
       </form>
+      {% if messages %}
+      <div class="mb-10">
+          {% for message in messages %}
+          <div class="px-4 py-2 mb-2 text-white">
+              {{ message }}
+          </div>
+          {% endfor %}
+      </div>
+      {% endif %}
       <div class="flex justify-center mb-4 space-x-4">
         <a href="#" class="text-gray-300 transition-colors hover:text-white"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="text-gray-300 transition-colors hover:text-white"><i class="fab fa-twitter"></i></a>

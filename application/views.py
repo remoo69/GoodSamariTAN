@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
-from .models import DonationForm, NGO, Message # Import your DonationForm model
+from .models import DonationForm, NGO, Message, Subscriber # Import your DonationForm model
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 def donation_view(request):
     if request.method == 'POST':
@@ -97,5 +98,18 @@ def contact(request):
 
         Message.objects.create(name=name, email=email, message=message)
         return redirect('contact')  # Redirect to the same page or another page after submission
+
+    return render(request, 'contact.html')
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            if Subscriber.objects.filter(email=email).exists():
+                messages.error(request, 'This email is already subscribed.')
+            else:
+                Subscriber.objects.create(email=email)
+                messages.success(request, 'You have successfully subscribed.')
+        return redirect('contact')  # Redirect to the contact page or another page after submission
 
     return render(request, 'contact.html')

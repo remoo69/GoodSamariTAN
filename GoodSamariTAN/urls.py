@@ -13,6 +13,7 @@ urlpatterns = [
     path('ngos/', views.ngo_list, name='ngo_list'),
     path('ngos/<int:pk>/', views.ngo_detail, name='ngo_detail'),
     path('contact/', views.contact, name='contact'),
+    path('subscribe/', views.subscribe, name='subscribe'),
 ] 
 
 # Serve media files during development
