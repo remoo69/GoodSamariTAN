@@ -62,20 +62,26 @@ def about(request):
 def ngo_list(request):
     query = request.GET.get('q', '')
     location = request.GET.get('location')
+    category = request.GET.get('category')
     ngos = NGO.objects.all()
 
     if query:
         ngos = ngos.filter(name__icontains=query)
     if location:
         ngos = ngos.filter(city=location)
+    if category:
+        ngos = ngos.filter(categories__name=category)
 
     cities = NGO.objects.values_list('city', flat=True).distinct()
+    categories = NGO.objects.values_list('categories__name', flat=True).distinct()
 
     context = {
         'ngos': ngos,
         'cities': cities,
+        'categories': categories,
         'query': query,
         'location': location,
+        'category': category,
     }
     return render(request, 'ngo_list.html', context)
 
