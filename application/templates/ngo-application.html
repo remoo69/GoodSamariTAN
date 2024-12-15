@@ -14,48 +14,58 @@
 
     <!-- Form Container -->
     <div class="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-24 pb-12">
-        <div class="w-full max-w-3xl bg-white p-6 opacity-90 rounded-md shadow-lg">
+        <!-- di ko alam kung ano mas bagay, gray or white, tsaka kung kung maayos may opacity -->
+        <div class="w-full max-w-3xl bg-gray-200 p-6 opacity-90 rounded-md shadow-lg">
             <form method="post" action="{% url 'ngo_application_submit' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="grid grid-cols-1 gap-4">
                     <h1 class="text-3xl font-bold text-slate-800 mb-6 text-center">NGO Application</h1>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">Organization Name</label>
-                        <input type="text" name="name" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                        <input type="text" name="name" required class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">Cover Image</label>
-                        <input type="file" name="cover_image" class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                        <input type="file" name="cover_image" class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">About</label>
-                        <textarea name="about" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md"></textarea>
+                        <textarea name="about" required class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md"></textarea>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">Needs (comma-separated)</label>
-                        <input type="text" name="needs" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                        <input type="text" name="needs" required class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">City</label>
-                        <input type="text" name="city" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                        <input type="text" name="city" required class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">Exact Address</label>
-                        <input type="text" name="exact_address" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                        <input type="text" name="exact_address" required class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">Phone</label>
-                        <input type="text" name="phone" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                        <input type="text" name="phone" required class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">Email</label>
-                        <input type="email" name="email" required class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
+                        <input type="email" name="email" required class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md" />
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-900">Other Donation Methods</label>
-                        <textarea name="other_donation_methods" class="w-full mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md"></textarea>
+                        <textarea name="other_donation_methods" class="w-full text-gray-900 mt-2 px-4 py-2 border-2 border-gray-800 border rounded-md"></textarea>
                     </div>
                 </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-900">Category</label>
+                    <select name="category" required class="w-full mt-2 px-4 py-2 border-2 text-gray-900 border-gray-700 rounded-md">
+                        <option value="" disabled selected>Select a category</option>
+                        {% for category in categories %}
+                            <option class="block text-sm font-medium text-gray-900" value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>                
                 <div class="text-center mt-6">
                     <button type="submit" class="w-full sm:w-auto px-5 py-2 bg-[#25A18E] text-gray-900 rounded-md hover:bg-[#1A7469]">
                         Submit Application

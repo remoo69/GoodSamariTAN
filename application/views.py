@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from .models import DonationForm, NGO, Message, Subscriber # Import your DonationForm model
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from .models import NGOCategory
 
 def donation_view(request):
     if request.method == 'POST':
@@ -117,7 +118,8 @@ def subscribe(request):
     return render(request, 'contact.html')
 
 def ngo_application(request):
-    return render(request, 'ngo-application.html')
+    categories = NGOCategory.objects.all()  # Fetch all categories
+    return render(request, 'ngo-application.html', {'categories': categories})
 
 def ngo_application_submit(request):
     if request.method == 'POST':
@@ -125,12 +127,16 @@ def ngo_application_submit(request):
         name = request.POST.get('name')
         cover_image = request.FILES.get('cover_image')
         about = request.POST.get('about')
-        needs = request.POST.get('needs')  # Assume comma-separated input
+        needs = request.POST.get('needs')
         city = request.POST.get('city')
         exact_address = request.POST.get('exact_address')
         phone = request.POST.get('phone')
         email = request.POST.get('email')
         other_donation_methods = request.POST.get('other_donation_methods')
+        category_id = request.POST.get('category')
+
+        # Fetch the category instance
+        category = NGOCategory.objects.get(id=category_id)
 
         # Save to the NGO model
         ngo = NGO.objects.create(
@@ -144,9 +150,10 @@ def ngo_application_submit(request):
             email=email,
             other_donation_methods=other_donation_methods,
         )
+        # Assign the selected category
+        ngo.categories.add(category)
 
         # Redirect to the home page
-        return redirect('home')  # Replace 'home' with the correct URL name
+        return redirect('home')
 
-    # If the request is not POST, redirect to the application form
     return redirect('ngo_application')
