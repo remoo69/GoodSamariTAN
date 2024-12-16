@@ -100,12 +100,12 @@ def ngo_list(request):
 
 def ngo_detail(request, pk):
     ngo = get_object_or_404(NGO, pk=pk)
-    sample=list(NGO.objects.all())
-    if len(sample)<3:
-        sample=sample
+    sample = list(NGO.objects.filter(verified=True))  # Filter only verified NGOs
+    if len(sample) < 3:
+        sample = sample
     else:
-        sample=random.sample(sample,3)
-    return render(request, 'ngo_detail.html', {'ngo': ngo, "sample":sample})
+        sample = random.sample(sample, 3)
+    return render(request, 'ngo_detail.html', {'ngo': ngo, 'sample': sample})
 
 def contact(request):
     if request.method == 'POST':
