@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<section class="w-full pt-40 bg-slate-50">
+<section class="w-full py-40 bg-slate-50">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center">
@@ -52,18 +52,31 @@
         <!-- Pagination -->
         <div class="flex items-center justify-between mt-8">
             {% if page_obj.has_previous %}
-            <button class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
+            <a href="?page={{ page_obj.previous_page_number }}" class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
                 <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>Previous
-            </button>
+            </a>
             {% endif %}
+
+            <div class="flex gap-2">
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                        {% if num == page_obj.number %}
+                            <span class="px-4 py-2 text-white bg-[#004E64] rounded-md">{{ num }}</span>
+                        {% else %}
+                            <a href="?page={{ num }}" class="px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">{{ num }}</a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
             {% if page_obj.has_next %}
-            <button class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
+            <a href="?page={{ page_obj.next_page_number }}" class="flex items-center gap-2 px-4 py-2 transition bg-white border rounded-md shadow text-slate-500 border-slate-300 hover:bg-slate-100">
                 Next<svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
-            </button>
+            </a>
             {% endif %}
         </div>
     </div>

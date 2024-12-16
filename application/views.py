@@ -67,7 +67,7 @@ def ngo_list(request):
     category = request.GET.get('category')
     
     # Only show verified NGOs
-    ngos = NGO.objects.filter(verified=True)  # Add this filter
+    ngos = NGO.objects.filter(verified=True)
     
     if query:
         ngos = ngos.filter(name__icontains=query)
@@ -76,16 +76,21 @@ def ngo_list(request):
     if category:
         ngos = ngos.filter(categories__name=category)
 
+    paginator = Paginator(ngos, 6)  # Show 6 NGOs per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     cities = NGO.objects.values_list('city', flat=True).distinct()
     categories = NGO.objects.values_list('categories__name', flat=True).distinct()
 
     context = {
-        'ngos': ngos,
+        'ngos': page_obj,
         'cities': cities,
         'categories': categories,
         'query': query,
         'location': location,
         'category': category,
+        'page_obj': page_obj,
     }
     return render(request, 'ngo_list.html', context)
 
