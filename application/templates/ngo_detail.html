@@ -1,44 +1,210 @@
-<!-- filepath: /d:/codes/GoodSamariTAN/application/templates/ngo_detail.html -->
 {% extends 'base.html' %}
 {% load static %}
 {% load custom_filters %}
 
 {% block content %}
-<div class="container py-8 mx-auto">
-    <div class="overflow-hidden bg-white rounded-lg shadow-md">
-        <img src="{{ ngo.cover_image.url }}" alt="{{ ngo.name }}" class="object-cover w-full h-64">
-        <div class="p-4">
-            <h1 class="mb-4 text-4xl font-bold">{{ ngo.name }}</h1>
-            <p class="mb-4 text-gray-600">{{ ngo.about }}</p>
-            <h2 class="mb-2 text-2xl font-bold">What They Need</h2>
-            <ul class="mb-4 list-disc list-inside">
-                {% for need in ngo.needs|split:',' %}
-                <li>{{ need }}</li>
-                {% endfor %}
-            </ul>
-            <h2 class="mb-2 text-2xl font-bold">Contact Information</h2>
-            <p class="mb-2"><strong>City:</strong> {{ ngo.city }}</p>
-            <p class="mb-2"><strong>Exact Address:</strong> {{ ngo.exact_address }}</p>
-            <p class="mb-2"><strong>Phone:</strong> {{ ngo.phone }}</p>
-            <p class="mb-2"><strong>Email:</strong> {{ ngo.email }}</p>
-            <h2 class="mb-2 text-2xl font-bold">Other Donation Methods</h2>
-            <p class="mb-4">{{ ngo.other_donation_methods }}</p>
-            <h2 class="mb-2 text-2xl font-bold">Gallery</h2>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {% for image in ngo.gallery.all %}
-                <img src="{{ image.image.url }}" alt="Gallery Image" class="object-cover w-full h-32 rounded-lg">
-                {% endfor %}
+<div class="container pt-40 pb-20 mx-auto">
+    <div class="bg-white shadow-md rounded-xl">
+        <section class="flex-grow w-full h-full py-8 pt-20 bg-white rounded-xl">
+            <div class="flex flex-col items-center justify-center px-4 mx-auto space-y-5 md:flex-col max-w-7xl sm:px-6 lg:px-8">
+                <div class="w-full mb-3 text-center md:text-center">
+                    <h1 class="text-3xl font-bold text-center md:text-4xl text-slate-800">{{ngo.name}}</h1>
+                </div>
+                <div class="bg-gray-100 border border-gray-200 border-solid shadow-sm">
+                    <img src="{{ngo.cover_image.url}}" alt="{{ngo.name}}" class="w-[900px] h-[500px] object-cover">
+                </div>
+                <button type="button" onclick="document.getElementById('donationModal').classList.remove('hidden')" class="w-36 flex items-center gap-1 px-4 py-2 font-bold bg-[#004E64] rounded-md text-white hover:bg-[#256577] hover:shadow-lg">
+                    Donate Now
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+                    </svg>
+                </button>
             </div>
-            <h2 class="mb-2 text-2xl font-bold">Categories</h2>
-            <ul class="list-disc list-inside">
-                {% for category in ngo.categories.all %}
-                <li>{{ category.name }}</li>
-                {% endfor %}
-            </ul>
-            <button class="px-4 py-2 mt-4 hover:text-white transition rounded-md border-2 border-[#25A18E] font-bold hover:bg-[#25A18E] text-[#25A18E]">
-                Donate Now
-            </button>
-        </div>
+        </section>
+
+        <section class="w-full py-8 mt-5 bg-white">
+            <div class="flex flex-col items-center justify-center px-4 mx-auto md:flex-col max-w-7xl sm:px-6 lg:px-8">
+                <div class="w-full mb-8 space-y-5 text-center md:flex-col">
+                    <h1 class="text-3xl font-bold text-left md:text-4xl text-slate-800">About Us</h1>
+                    <p class="mt-4 text-base text-left md:text-lg text-slate-700">{{ngo.about}}</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center px-4 mx-auto md:flex-col max-w-7xl sm:px-6 lg:px-8">
+                <div class="w-full mb-8 space-y-5 text-center md:flex-col">
+                    <h1 class="text-3xl font-bold text-left md:text-4xl text-slate-800">What We Need</h1>
+                    <ul class="list-none">
+                        {% for item in ngo.needs|split:"," %}
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#334155" class="bi bi-check-circle-fill" viewBox="0 0 16 16" style="margin-right: 5px;">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                            <p class="text-base text-left md:text-lg text-slate-800">{{ item }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center px-4 mx-auto md:flex-col max-w-7xl sm:px-6 lg:px-8">
+                <div class="w-full mb-8 space-y-5 text-center md:flex-col">
+                    <h1 class="text-3xl font-bold text-left md:text-4xl text-slate-800">Contacts</h1>
+                    <p class="mt-4 text-base text-left md:text-lg text-slate-700">Address: {{ngo.exact_address}}, {{ngo.city}}</p>
+                    <p class="mt-4 text-base text-left md:text-lg text-slate-700">Phone: {{ngo.phone}}</p>
+                    <p class="mt-4 text-base text-left md:text-lg text-slate-700">Email: {{ngo.email}}</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center px-4 mx-auto md:flex-col max-w-7xl sm:px-6 lg:px-8">
+                <div class="w-full mb-8 space-y-5 text-center md:flex-col">
+                    <h1 class="text-3xl font-bold text-left md:text-4xl text-slate-800">Other Donation Methods</h1>
+                    <p class="text-base text-left md:text-lg text-slate-700">{{ ngo.other_donation_methods }}</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center justify-center px-4 mx-auto md:flex-col max-w-7xl sm:px-6 lg:px-8">
+                <div class="w-full grid-rows-3 mb-8 space-y-5 text-center md:flex-col">
+                    <h1 class="text-3xl font-bold text-left md:text-4xl text-slate-800">Gallery</h1>
+                    <div class="grid grid-cols-3 gap-4">
+                        {% for image in ngo.gallery.all %}
+                        <div class="p-4 bg-gray-100">
+                            <img src="{{ image }}" alt="Image 1" class="object-cover w-full h-24 rounded">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 bg-white rounded-xl">
+            <div class="flex flex-col items-center justify-center px-4 pt-5 mx-auto space-y-8 md:flex-col max-w-7xl sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold text-center md:text-4xl text-slate-800">Other NGOs</h1>
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {% for ng_samp in sample %}
+                    <div class="flex flex-col overflow-hidden bg-white rounded-lg shadow">
+                        <div class="flex items-center justify-center h-40 bg-gray-100">
+                            <img src="{{ ng_samp.cover_image.url }}" alt="Action Image" class="object-cover w-full h-full">
+                        </div>
+                        <div class="flex flex-col justify-between flex-1 p-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">{{ ng_samp.name }}</h3>
+                                <p class="text-sm text-slate-700">{{ ng_samp.about }}</p>
+                            </div>
+                            <a href="{% url 'ngo_detail' ng_samp.id %}" class="w-full px-4 py-2 mt-4 text-center transition border rounded-md text-slate-700 border-slate-300 hover:bg-slate-100">Learn More ➔</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
     </div>
 </div>
+
+<!-- Donation Modal -->
+<div id="donationModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+    <div class="relative w-full max-w-md max-h-screen p-6 py-5 overflow-y-auto bg-white rounded-lg sm:max-w-sm scrollbar-visible">
+        <!-- Close Button -->
+        <button onclick="document.getElementById('donationModal').classList.add('hidden')" class="absolute p-2 text-xl font-bold text-gray-500 top-4 right-4 hover:text-gray-700 sm:text-lg">
+            &times;
+        </button>
+        <!-- Donation Form -->
+        <form id="donationForm" method="POST" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+            <!-- Name & Contact -->
+            <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+                <div>
+                    <label for="name" class="block text-sm font-medium">Name <span class="text-red-500">*</span></label>
+                    <input type="text" name="name" id="name" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" pattern="[A-Za-z .]+" title="Only letters and spaces are allowed" required>
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium">Phone <span class="text-red-500">*</span></label>
+                    <input type="tel" name="phone" id="phone" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" pattern="\d+" title="Phone number must contain only numbers" required>
+                </div>
+            </div>
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium">Email <span class="text-red-500">*</span></label>
+                <input type="email" name="email" id="email" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            </div>
+            <!-- Item Details -->
+            <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+                <div>
+                    <label for="item" class="block text-sm font-medium">Item <span class="text-red-500">*</span></label>
+                    <input type="text" name="item" id="item" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+                <div>
+                    <label for="quantity" class="block text-sm font-medium">Quantity <span class="text-red-500">*</span></label>
+                    <input type="number" name="quantity" id="quantity" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+            </div>
+            <!-- Dimensions -->
+            <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-3">
+                <div>
+                    <label for="height" class="block text-sm font-medium">Height (IN)</label>
+                    <input type="number" name="height" id="height" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="width" class="block text-sm font-medium">Width (IN)</label>
+                    <input type="number" name="width" id="width" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="weight" class="block text-sm font-medium">Weight (KG)</label>
+                    <input type="number" name="weight" id="weight" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+            </div>
+            <!-- Category & Description -->
+            <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+                <div>
+                    <label for="category" class="block text-sm font-medium">Category</label>
+                    <input type="text" name="category" id="category" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="description" class="block text-sm font-medium">Description</label>
+                    <textarea name="description" id="description" rows="2" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                </div>
+            </div>
+            <!-- Image & Notes -->
+            <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+                <div>
+                    <label for="image" class="block text-sm font-medium">Upload Image</label>
+                    <input type="file" name="image" id="image" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
+                <div>
+                    <label for="notes" class="block text-sm font-medium">Notes</label>
+                    <textarea name="notes" id="notes" rows="2" class="w-full p-2 bg-gray-200 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="mt-4 text-center">
+                <button type="submit" class="w-full px-4 py-2 text-white bg-blue-500 rounded shadow sm:w-auto hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    const form = document.getElementById('donationForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent default form submission
+
+        const formData = new FormData(form);
+
+        fetch('{% url "donation_form" %}', {  // Replace with the correct URL name
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Donation successfully submitted!');
+                document.getElementById('donationModal').classList.add('hidden');
+            } else {
+                alert('There was an error submitting the form.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An unexpected error occurred.');
+        });
+    });
+</script>
 {% endblock %}

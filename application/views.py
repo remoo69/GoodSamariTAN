@@ -6,6 +6,7 @@ from .models import DonationForm, NGO, Message, Subscriber # Import your Donatio
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from .models import NGOCategory
+import random
 
 def donation_view(request):
     if request.method == 'POST':
@@ -96,7 +97,12 @@ def ngo_list(request):
 
 def ngo_detail(request, pk):
     ngo = get_object_or_404(NGO, pk=pk)
-    return render(request, 'ngo_detail.html', {'ngo': ngo})
+    sample=list(NGO.objects.all())
+    if len(sample)<3:
+        sample=sample
+    else:
+        sample=random.sample(sample,3)
+    return render(request, 'ngo_detail.html', {'ngo': ngo, "sample":sample})
 
 def contact(request):
     if request.method == 'POST':
