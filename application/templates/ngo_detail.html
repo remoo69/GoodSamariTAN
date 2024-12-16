@@ -63,12 +63,18 @@
                     <h1 class="text-3xl font-bold text-left md:text-4xl text-slate-800">Gallery</h1>
                     <div class="grid grid-cols-3 gap-4">
                         {% for image in ngo.gallery.all %}
-                        <div class="p-4 bg-gray-100">
-                            <img src="{{ image }}" alt="Image 1" class="object-cover w-full h-24 rounded">
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <img src="{{ image }}" alt="Image 1" class="object-cover w-full h-24 rounded-lg">
                         </div>
                         {% endfor %}
                     </div>
                 </div>
+                <button type="button" onclick="document.getElementById('donationModal').classList.remove('hidden')" class="self-start w-36 flex items-center gap-1 px-4 py-2 font-bold bg-[#004E64] rounded-md text-white hover:bg-[#256577] hover:shadow-lg">
+                    Donate Now
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 11 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.286" d="M5.884 1.88 10.2 6l-4.316 4.12M10.2 6H1.8" />
+                    </svg>
+                </button>
             </div>
         </section>
 
