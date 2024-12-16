@@ -128,6 +128,9 @@ def subscribe(request):
             else:
                 Subscriber.objects.create(email=email)
                 messages.success(request, 'You have successfully subscribed.')
+        else:
+            messages.error(request, 'Please provide a valid email address.')
+        
         return redirect('contact')  # Redirect to the contact page or another page after submission
 
     return render(request, 'contact.html')
