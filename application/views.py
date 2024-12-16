@@ -22,6 +22,7 @@ def donation_view(request):
         width = request.POST.get('width')
         weight = request.POST.get('weight')
         notes = request.POST.get('notes')
+        ngo_id = request.POST.get('ngo')
 
         # Handle image upload
         image = request.FILES.get('image')
@@ -33,6 +34,7 @@ def donation_view(request):
 
         # Save the form data to the database
         try:
+            ngo = NGO.objects.get(id=ngo_id)  # Fetch the NGO instance
             donation = DonationForm.objects.create(
                 name=name,
                 phone=phone,
@@ -46,6 +48,7 @@ def donation_view(request):
                 weight=int(weight) if weight else None,  # Ensure `weight` is an integer
                 notes=notes,
                 image=image,  # Pass the image directly
+                ngo=ngo,  # Set the NGO instance
             )
             # Return success response
             return JsonResponse({'success': True, 'message': 'Donation successfully submitted!', 'image_url': image_url})
