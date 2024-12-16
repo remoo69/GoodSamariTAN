@@ -9,14 +9,15 @@ class DonationForm(models.Model):
     quantity = models.IntegerField()
     category = models.CharField(max_length=50)
     description = models.TextField()
-    height = models.IntegerField()  
-    width = models.IntegerField()    
-    weight = models.IntegerField()  
+    height = models.IntegerField(null=True, blank=True)  # Make optional
+    width = models.IntegerField(null=True, blank=True)   # Make optional
+    weight = models.IntegerField(null=True, blank=True)  # Make optional
     notes = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='donations/', null=True, blank=True)
+    ngo = models.ForeignKey('NGO', on_delete=models.CASCADE)  # Link to NGO
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.ngo.name}"
 
 class NGO(models.Model):
     name = models.CharField(max_length=255)

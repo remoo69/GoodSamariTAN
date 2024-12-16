@@ -64,7 +64,7 @@
                     <div class="grid grid-cols-3 gap-4">
                         {% for image in ngo.gallery.all %}
                         <div class="p-4 bg-gray-100 rounded-lg">
-                            <img src="{{ image }}" alt="Image 1" class="object-cover w-full h-24 rounded-lg">
+                            <img src="{{ image.url }}" alt="Image {{ forloop.counter }}" class="object-cover w-full h-24 rounded-lg">
                         </div>
                         {% endfor %}
                     </div>
@@ -112,6 +112,7 @@
         <!-- Donation Form -->
         <form id="donationForm" method="POST" enctype="multipart/form-data" class="space-y-4">
             {% csrf_token %}
+            <input type="hidden" name="ngo" value="{{ ngo.id }}">
             <!-- Name & Contact -->
             <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                 <div>
