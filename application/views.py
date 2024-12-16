@@ -84,8 +84,9 @@ def ngo_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    cities = NGO.objects.values_list('city', flat=True).distinct()
-    categories = NGO.objects.values_list('categories__name', flat=True).distinct()
+    # Only get cities and categories from verified NGOs
+    cities = NGO.objects.filter(verified=True).values_list('city', flat=True).distinct()
+    categories = NGO.objects.filter(verified=True).values_list('categories__name', flat=True).distinct()
 
     context = {
         'ngos': page_obj,
