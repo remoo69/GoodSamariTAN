@@ -6,11 +6,6 @@ __pycache__/
 venv/
 .env/
 
-# Django-specific
-db.sqlite3
-/static/
-/media/
-
 # Logs
 *.log
 
