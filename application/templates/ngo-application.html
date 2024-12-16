@@ -24,10 +24,6 @@
                         <input type="text" name="name" required class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-800 rounded-md" />
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-900">Cover Image</label>
-                        <input type="file" name="cover_image" class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-800 rounded-md" />
-                    </div>
-                    <div>
                         <label class="block text-sm font-medium text-gray-900">About</label>
                         <textarea name="about" required class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-800 rounded-md"></textarea>
                     </div>
@@ -55,22 +51,26 @@
                         <label class="block text-sm font-medium text-gray-900">Other Donation Methods</label>
                         <textarea name="other_donation_methods" class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-800 rounded-md"></textarea>
                     </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-900">Category</label>
-                    <select name="category" required class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-700 rounded-md">
-                        <option value="" disabled selected>Select a category</option>
-                        {% for category in categories %}
-                            <option class="block text-sm font-medium text-gray-900" value="{{ category.id }}">{{ category.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div>
-                    <label class="block pt-2 text-sm font-medium text-gray-900">Gallery Images</label>
-                    <input type="file" name="gallery_images" multiple class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-800 rounded-md" />
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Category</label>
+                        <select name="category" required class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-700 rounded-md">
+                            <option value="" disabled selected>Select a category</option>
+                            {% for category in categories %}
+                                <option class="block text-sm font-medium text-gray-900" value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Cover Image</label>
+                        <input type="file" name="cover_image" class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-800 rounded-md" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-900">Gallery Images</label>
+                        <input type="file" name="gallery_images" multiple class="w-full px-4 py-2 mt-2 text-gray-900 border border-gray-800 rounded-md" />
+                    </div>
                 </div>
                 <div class="mt-6 text-center">
-                    <button type="submit" class="w-full px-5 font-bold text-white py-2 bg-[#25A18E] rounded-md hover:bg-[#1A7469]">
+                    <button type="submit" class="w-full px-5 font-bold text-white py-2 mb-2 bg-[#25A18E] rounded-md hover:bg-[#1A7469]">
                         Submit Application
                     </button>
                 </div>
