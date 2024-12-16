@@ -1,4 +1,3 @@
-# models.py
 from django.db import models
 
 class DonationForm(models.Model):
@@ -29,7 +28,6 @@ class NGO(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField()
     other_donation_methods = models.TextField()
-    gallery = models.ManyToManyField('NGOGallery')
     categories = models.ManyToManyField('NGOCategory')
     verified = models.BooleanField(default=False)  # Add this field
 
@@ -38,9 +36,10 @@ class NGO(models.Model):
 
 class NGOGallery(models.Model):
     image = models.ImageField(upload_to='ngos/gallery/')
+    ngo = models.ForeignKey(NGO, related_name='gallery', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Gallery Image {self.id}"
+        return f"Gallery Image {self.id} for {self.ngo.name}"
 
 class NGOCategory(models.Model):
     name = models.CharField(max_length=255)

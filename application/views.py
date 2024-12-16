@@ -1,12 +1,12 @@
+import random
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
-from .models import DonationForm, NGO, Message, Subscriber # Import your DonationForm model
+from .models import DonationForm, NGO, NGOGallery, NGOCategory, Message, Subscriber # Import your DonationForm model
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from .models import NGOCategory
-import random
 
 def donation_view(request):
     if request.method == 'POST':
@@ -163,6 +163,11 @@ def ngo_application_submit(request):
         )
         # Assign the selected category
         ngo.categories.add(category)
+
+        # Handle gallery images if any
+        gallery_images = request.FILES.getlist('gallery_images')
+        for image in gallery_images:
+            NGOGallery.objects.create(ngo=ngo, image=image)
 
         # Redirect to the home page
         return redirect('home')
